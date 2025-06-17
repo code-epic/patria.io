@@ -1953,7 +1953,7 @@ function PrintPagarCredito(credito, concepto){
         <table style="width:800px" class="membrete">
             <tr>
                 <td width="200px" valign="top"><center><img  style="width: 100px;height: 100px; margin-left: 0px" 
-                class="img-responsive file-path-wrapper-pre-view" src="images/logo_ipsfa.png" id="_imgescudo"/></center>
+                class="img-responsive file-path-wrapper-pre-view" src="images/ejercito.png" id="_imgescudo"/></center>
                 </td>
                 <td width="400px">
                     <center>
@@ -1996,7 +1996,7 @@ function PrintPagarCredito(credito, concepto){
             <td width="70%" valign="top">
                 <center><h3>
                 <img style="width: 250px;height: 120px;"  
-                src="images/firma_digital.png" onerror="this.src='images/ndisponible.jpg'"/><br>
+                src="" onerror="this.src='images/ndisponible.jpg'"/><br>
                 ${nombrePI}<BR>
                 ${gradoPI}<br>
                 PRESIDENTE DE LA JUNTA ADMINISTRADORA I.P.S.F.A.

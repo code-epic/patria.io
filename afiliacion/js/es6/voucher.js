@@ -122,7 +122,7 @@ function ImprimirNeto(){
     <table style="width:800px" class="membrete">
     <tr>
         <td width="200px" valign="top"><center><img  style="width: 100px;height: 100px; margin-left: 0px" 
-        class="img-responsive file-path-wrapper-pre-view" src="images/logo_ipsfa.png" id="_imgescudo"/></center>
+        class="img-responsive file-path-wrapper-pre-view" src="images/ejercito.png" id="_imgescudo"/></center>
         </td>
         <td width="400px">
             <center>
@@ -404,7 +404,7 @@ function ImprimirNetoSobreviviente(){
     <table style="width:800px" class="membrete">
     <tr>
         <td width="200px" valign="top"><center><img  style="width: 100px;height: 100px; margin-left: 0px" 
-        class="img-responsive file-path-wrapper-pre-view" src="images/logo_ipsfa.png" id="_imgescudo"/></center>
+        class="img-responsive file-path-wrapper-pre-view" src="images/ejercito.png" id="_imgescudo"/></center>
         </td>
         <td width="400px">
             <center>

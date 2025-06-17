@@ -113,22 +113,29 @@ class Menu {
   }
   //Crear Menu Dinamicamente
   Crear(Json) {
-      console.log('Entrando en conexiones')
-      var e = sessionStorage.getItem("patria.IO");
+    
+      const tk = Json[0].Aplicacion[0].Rol.Menu
+      if( sessionStorage.getItem('menu') == undefined ){
+        sessionStorage.setItem('menu',JSON.stringify(tk))
+                // let texto = Md5.hashStr(JSON.stringify(data[0].Aplicacion[0].Rol.Menu))
+                // sessionStorage.setItem('crypt', texto)
+      }
+      this.regenerarToken(tk);
+  }
 
-      var s = e.split(".");
-      var MenuJS = JSON.parse(atob(s[1]));
-      var Mnu = MenuJS.Usuario.Perfil.Menu;
+  regenerarToken(Mnu) {
+    
       var cadena = "<li class='header'>Menu</li>";
+      cadena += `<li><a href="./starter.html"><i class="fa fa-home"></i><span>Principal</span></a></li>`;
       if (Mnu != undefined){
         Mnu.forEach(v => {
-          if(v.url != undefined){
-            cadena += `<li><a href="${v.url}"><i class="${v.icono}"></i><span>${v.nombre}</span></a></li>`;
-          }else{
+          // if(v.url != undefined){
+          //   cadena += `<li><a href="${v.url}"><i class="${v.icono}"></i><span>${v.nombre}</span></a></li>`;
+          // }else{
             cadena += `<li>
-              <a href="#" onclick="CargarUrl('_cuerpo','${v.js}');${v.accion}"><i class="${v.icono}"></i><span>${v.nombre}</span></a>
+              <a href="#" onclick="CargarUrl('_cuerpo','${v.url}');${v.js}"><i class="${v.icono}"></i><span>${v.nombre}</span></a>
             </li>`;
-          }
+          // }
         });
         $('#_menu').html(cadena);
       }else{
@@ -227,8 +234,8 @@ $(function () {
   CargarUrl("_frmCreditoPrestamo", "afi/creditofrm");
 
   CargarUrl("_stepper", "afi/medidajudicialfrm");
-  CargarUrl("_stepperCredito", "cre/stepcredito");
-  CargarUrl("_stepperPrestamo", "cre/stepsolicitud");
+  // CargarUrl("_stepperCredito", "cre/stepcredito");
+  // CargarUrl("_stepperPrestamo", "cre/stepsolicitud");
   CargarUrl("_bxDescuentos", "afi/descuentos");
   
   CargarUrl("_decuentos", "afi/descuentosfrm");
@@ -240,21 +247,21 @@ $(function () {
   CargarUrl("_contenidofamiliar", "afi/familiarmodalcontinuar");
   CargarUrl("_contenidoh", "afi/historicomilitar");
   CargarUrl("_contenidorpt", "rpt/constancia");
-  CargarUrl("_contenidocps", "rpt/constanciapensionsobr");
-  CargarUrl("_objectPDF", "rpt/carnet");
-  CargarUrl("_objectPDF2", "rpt/carnetfamiliar");
+  // CargarUrl("_contenidocps", "rpt/constanciapensionsobr");
+  // CargarUrl("_objectPDF", "rpt/carnet");
+  // CargarUrl("_objectPDF2", "rpt/carnetfamiliar");
 
   CargarUrl("_bxContenedores", "afi/contenedores");
 
   CargarUrl("_hojaderuta", "rpt/hojaderuta");
   CargarUrl("_hojadesolvencia", "rpt/hojadesolvencia");
-  CargarUrl("_autorizaciontratamiento", "rpt/autorizaciontratamiento");
-  CargarUrl("_constanciafaov", "rpt/constanciafaov");
-  CargarUrl("_constanciacredito", "rpt/constanciacredito");
-  CargarUrl("_constanciafideicomiso", "rpt/constanciafideicomiso");
-  CargarUrl("_constanciapensionado", "rpt/constanciapensionado");
-  CargarUrl("_constanciapensionadosobre", "rpt/constanciapensionsobr");
-  CargarUrl("_rptprestamos", "cre/rptprestamo");
+  // CargarUrl("_autorizaciontratamiento", "rpt/autorizaciontratamiento");
+  // CargarUrl("_constanciafaov", "rpt/constanciafaov");
+  // CargarUrl("_constanciacredito", "rpt/constanciacredito");
+  // CargarUrl("_constanciafideicomiso", "rpt/constanciafideicomiso");
+  // CargarUrl("_constanciapensionado", "rpt/constanciapensionado");
+  // CargarUrl("_constanciapensionadosobre", "rpt/constanciapensionsobr");
+  // CargarUrl("_rptprestamos", "cre/rptprestamo");
 
   
   
@@ -268,7 +275,7 @@ $(function () {
   });
 
   IniciarSesion();
-  Mnu.Crear("Cargar...");
+ 
 });
 
 
@@ -386,15 +393,22 @@ function soloLetras(e) {
 
 function IniciarSesion(){
   if (sessionStorage.getItem('patria.IO') != undefined ){
-
     var e = sessionStorage.getItem("patria.IO");
     var s = e.split(".");
     var json = JSON.parse(atob(s[1]));
     Usuario = json.Usuario;
-    console.log(Usuario)
 
     $("#_PerfilUsuario").html(Usuario.Perfil.descripcion);
     $("#_NombreUsuario").html(Usuario.nombre);
+    let parametros = `${Usuario.cedula},patria.io,${Usuario.correo}`
+
+    var xAPI = {
+      'funcion': '_SYS_CUsuarioPerfil',
+      'parametros': parametros,
+      'valores': ''
+    }
+    CargarAPI(Conn.URL + Conn.IDHash, "POST", xAPI, Mnu);
+
 
   }
 }

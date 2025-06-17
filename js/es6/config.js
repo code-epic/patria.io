@@ -2,6 +2,7 @@ let _url = new URL(document.URL);
 
 class Conexion{
   constructor(){
+      this.IDHash = 'crud:9730d406a0f98664d2a06be21f7c5fb3.sse'
       this.IP = _url.hostname;
       this.Puerto = ":80";
       this.PuertoSSL = ":443";

@@ -755,8 +755,9 @@ class Militar {
 	}
 
 	//P123 .-
-	Crear(militar) {
-
+	Crear(data) {
+		const militar = data[0];
+		console.log(militar);
 		var url = "";
 		var i = 0;
 		var j = 0;
@@ -789,20 +790,20 @@ class Militar {
 			$("#_tblFamiliares").html(FamiliaresHTML());
 			var t = $('#tblFamiliares').DataTable(tablaBasica);
 			t.clear().draw();
-			var DB = militar.Persona.DatoBasico;
+			var DB = militar.persona.datobasico;
 
 			$("#_divfechanacimiento").show();
 			$("#_divfechadefuncion").show();
 			$("#txtnropersona").val(DB.nropersona);
 			$("#txtcedula").val(DB.cedula);
-			url = "images/grados/" + militar.Grado.abreviatura + ".png";
+			url = "images/grados/" + militar.grado.abreviatura + ".png";
 			url = url.toLowerCase();
 			$("#_imggrado").attr("src", url);
 			$("#_Constgrado").attr("src", url); //Grado de la constancia de afiliacion
 
 			var rutaimg = Conn.URLIMG;
 			url = rutaimg + $("#txtcedula").val() + ".jpg";
-			if (militar.Persona.foto != undefined) {
+			if (militar.persona.foto != undefined) {
 				rutaimg = Conn.URLTEMP;
 				url = rutaimg + $("#txtcedula").val() + "/foto.jpg";
 			}
@@ -839,8 +840,8 @@ class Militar {
 			$("#cmbedocivil").val(DB.estadocivil);
 
 
-			$("#cmbcomponente").val(militar.Componente.abreviatura);
-			$("#cmbgrado").html('<option value="' + militar.Grado.abreviatura + '">' + militar.Grado.descripcion + '</option>');
+			$("#cmbcomponente").val(militar.componente.abreviatura);
+			$("#cmbgrado").html('<option value="' + militar.grado.abreviatura + '">' + militar.grado.descripcion + '</option>');
 			$("#txtnresuelto").val(militar.nresuelto);
 			$("#txtpnoascenso").val(militar.pxnoascenso);
 			$("#cmbprofecionalizacion").val(militar.pprof);
@@ -868,9 +869,9 @@ class Militar {
 				$("#_situacion").attr("style", "font-size:12px");
 			}
 
-			if (militar.CIS.Investigacion.FeDeVida != undefined) {
+			if (militar.cis.investigacion.fedevida != undefined) {
 				var ffevida = "";
-				militar.CIS.Investigacion.FeDeVida.forEach(v => { ffevida = v.fechacreacion; });
+				militar.cis.investigacion.fedevida.forEach(v => { ffevida = v.fechacreacion; });
 				if (ffevida != "") {
 					$("#_lblfevida").html(Util.ConvertirFechaHumana(ffevida));
 				}
@@ -885,7 +886,7 @@ class Militar {
 				$("#_clasificacion").html('<font style="size:8px">' + $("#cmbclase option:selected").text() + "</font>");
 
 			}
-			var Fideicomiso = militar.Fideicomiso;
+			var Fideicomiso = militar.fideicomiso;
 
 			if (militar.areconocido != undefined && militar.areconocido > 0) {
 				$("#_reconocidos").show();
@@ -901,9 +902,9 @@ class Militar {
 
 			$("#_tblBancos").html(BancariosHTML());
 			var thbanco = $('#tblBanco').DataTable(tablaBasica);
-			if (militar.Persona.DatoFinanciero != undefined) {
+			if (militar.persona.datofinanciero != undefined) {
 
-				var DF = militar.Persona.DatoFinanciero[0];
+				var DF = militar.persona.datofinanciero[0];
 				if (DF != undefined) {
 					$("#txtmnrocuenta").val(DF.cuenta);
 					$("#cmbminstfinanciera").val(DF.institucion);
@@ -912,7 +913,7 @@ class Militar {
 
 				thbanco.clear().draw();
 				i = 0;
-				militar.Persona.DatoFinanciero.forEach(v => {
+				militar.persona.datofinanciero.forEach(v => {
 					thbanco.row.add([
 						i++,
 						v.institucion,
@@ -924,9 +925,9 @@ class Militar {
 
 
 			}
-			if (militar.Persona.Direccion != undefined) {
+			if (militar.persona.direccion != undefined) {
 
-				var DIR = militar.Persona.Direccion[0];
+				var DIR = militar.persona.direccion[0];
 				Estados.ObtenerEstados();
 				$("#cmbmestado").val(DIR.estado);
 				$("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
@@ -937,24 +938,24 @@ class Militar {
 				$("#txtmapto").val(DIR.apartamento);
 
 			}
-			if (militar.Persona.Correo != undefined) {
-				$("#txtmtelefono").val(militar.Persona.Telefono.domiciliario);
-				$("#txtmcelular").val(militar.Persona.Telefono.movil);
-				$("#txtmcorreo").val(militar.Persona.Correo.principal);
+			if (militar.persona.correo != undefined) {
+				$("#txtmtelefono").val(militar.persona.telefono.domiciliario);
+				$("#txtmcelular").val(militar.persona.telefono.movil);
+				$("#txtmcorreo").val(militar.persona.correo.principal);
 			}
 
-			if (militar.Persona.PartidaNacimiento != undefined) {
-				$("#txtpregistrocivil").val(militar.Persona.PartidaNacimiento.registro);
-				$("#txtpano").val(militar.Persona.PartidaNacimiento.ano);
-				$("#txtpacta").val(militar.Persona.PartidaNacimiento.acta);
-				$("#txtpfolio").val(militar.Persona.PartidaNacimiento.folio);
-				$("#txtplibro").val(militar.Persona.PartidaNacimiento.libro);
+			if (militar.persona.partidanacimiento != undefined) {
+				$("#txtpregistrocivil").val(militar.persona.partidanacimiento.registro);
+				$("#txtpano").val(militar.persona.partidanacimiento.ano);
+				$("#txtpacta").val(militar.persona.partidanacimiento.acta);
+				$("#txtpfolio").val(militar.persona.partidanacimiento.folio);
+				$("#txtplibro").val(militar.persona.partidanacimiento.libro);
 
 			}
 
-			if (militar.Persona.DatoFisionomico != undefined) {
-				var df = militar.Persona.DatoFisico;
-				var dfi = militar.Persona.DatoFisionomico;
+			if (militar.persona.datofisionomico != undefined) {
+				var df = militar.persona.datofisico;
+				var dfi = militar.persona.datofisionomico;
 				$("#txtmpeso").val(df.peso);
 				$("#txtmtalla").val(df.talla);
 				$("#cmbmpiel").val(dfi.colorpiel);
@@ -968,20 +969,20 @@ class Militar {
 			$("#txtcodigocomponente").val(militar.codigocomponente);
 			$("#_codigocomponente").html(militar.codigocomponente);
 
-			$("#_lblfechacarnet").html(Util.ConvertirFechaHumana(militar.Tim.fechavencimiento));
-			$("#_lblcreacioncarnet").html(Util.ConvertirFechaHumana(militar.Tim.fechacreacion));
+			$("#_lblfechacarnet").html(Util.ConvertirFechaHumana(militar.tim.fechavencimiento));
+			$("#_lblcreacioncarnet").html(Util.ConvertirFechaHumana(militar.tim.fechacreacion));
 
 			$("#txtnumhistoriaclinica").val(militar.numerohistoria);
 			$("#_divpension").hide();
 			$("#lblFechaResolucion").html("Fecha de Resolución");
 			$("#_btnCCSolvencia").hide();
 			$("#_btnCARC").hide();
-			if (militar.Pension.grado != undefined && militar.Pension.grado != "" && militar.situacion != "ACT") {
+			if (militar.pension.grado != undefined && militar.pension.grado != "" && militar.situacion != "ACT") {
 				$("#lblFechaResolucion").html("Fecha de Retiro");
 				$("#_divpension").show();
 				$("#txtmfecharesuelto").val(Util.ConvertirFechaHumana(militar.fretiro));
-				$("#txtporcentaje").val(militar.Pension.pprestaciones);
-				$("#cmbtipopension").val(militar.Pension.causal);
+				$("#txtporcentaje").val(militar.pension.pprestaciones);
+				$("#cmbtipopension").val(militar.pension.causal);
 				$("#_btnCCSolvencia").show();
 				$("#_btnCARC").show();
 			}
@@ -1027,9 +1028,9 @@ class Militar {
 
 			var ipagado = 0;
 			var credito = false;
-			if (militar.Credito.Prestamo.Personal != undefined) {
-				if (militar.Credito.Prestamo.Personal.length > 0) {
-					militar.Credito.Prestamo.Personal.forEach(v => {
+			if (militar.credito.prestamo.personal != undefined) {
+				if (militar.credito.prestamo.personal.length > 0) {
+					militar.credito.prestamo.personal.forEach(v => {
 						credito = true;
 						if (v.pagado != undefined) ipagado = ipagado + 1;
 					});
@@ -1086,9 +1087,9 @@ class Militar {
 	Cargar(militar) {
 		this.id = militar.id;
 		this.tipodato = militar.tipodato;
-		this.Persona.DatoBasico.nropersona = militar.Persona.DatoBasico.nropersona;
-		this.Persona.DatoBasico = militar.Persona.DatoBasico;
-		var DFis = militar.Persona.DatoFisionomico;
+		this.Persona.DatoBasico.nropersona = militar.persona.datobasico.nropersona;
+		this.Persona.DatoBasico = militar.persona.datobasico;
+		var DFis = militar.persona.datofisionomico;
 
 		this.Persona.DatoFisionomico.colorojos = DFis.colorojos;
 		this.Persona.DatoFisionomico.colorpiel = DFis.colorpiel;
@@ -1110,10 +1111,10 @@ class Militar {
 		this.fresuelto = militar.fresuelto;
 		this.nresuelto = militar.nresuelto;
 		this.descripcionhistorica = militar.descripcionhistorica;
-		this.Componente.abreviatura = militar.Componente.abreviatura;
-		this.Componente.descripcion = militar.Componente.descripcion;
-		this.Grado.abreviatura = militar.Grado.abreviatura;
-		this.Grado.descripcion = militar.Grado.descripcion;
+		this.Componente.abreviatura = militar.componente.abreviatura;
+		this.Componente.descripcion = militar.componente.descripcion;
+		this.Grado.abreviatura = militar.grado.abreviatura;
+		this.Grado.descripcion = militar.grado.descripcion;
 		this.urlsimbolo = "";
 		this.urlfirmaministro = "";
 		this.urlpresidenteipsfa = "";

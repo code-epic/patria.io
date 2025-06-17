@@ -63,10 +63,15 @@ function Buscar(id) {
     $("#_imgfamiliar").attr("src", "images/ndisponible.jpg");
 
     ObjMilitar = new Militar();
-    var url = Conn.URL + "militar/crud/" + $("#_cedula").val();
-    CargarAPI(url, "GET", "", ObjMilitar);
+     var xAPI = {
+      'funcion': 'EJB_CMilitar',
+      'parametros': $("#_cedula").val(),
+      'valores': ''
+    }
+    var url = Conn.URL  + Conn.IDHash;
+    CargarAPI(url, "POST", xAPI, ObjMilitar);
 
-    var url = Conn.URL + "militar/pace/" + $("#_cedula").val();
+    //var url = Conn.URL + "militar/pace/" + $("#_cedula").val();
     //CargarAPI(url, "GET", "", ObjPACE);
 
     $('#lblformula').popover({
