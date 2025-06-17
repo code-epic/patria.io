@@ -689,3 +689,154 @@ function ReglaPorcentajeMayor2010(tiempo){
 
 
 
+  /**
+   * Calcula el tiempo de servicio y suma el tiempo reconocido
+   * @param {Date|string} fechaActual - Fecha de referencia
+   * @param {Date|string} fechaIngreso - Fecha de ingreso
+   * @param {Object} tiempoReconocido - Objeto con anios, meses y días reconocidos
+   * @returns {Object} Objeto con tiempo total calculado y tiempo de servicio formateado
+   */
+  function calcularTiempoServicioCompleto(fechaActual, fechaIngreso, tiempoReconocido = { anios: 0, meses: 0, dias: 0 }) {
+    // 1. Calcular tiempo de servicio base (sin tiempo reconocido)
+    const tiempoBase = this.calcularTiempoServicio(fechaActual, fechaIngreso);
+
+    // 2. Sumar el tiempo reconocido (siguiendo la lógica de Go)
+    let { anios, meses, dias } = this.sumarTiempoReconocido(tiempoBase, tiempoReconocido);
+
+    // 3. Formatear el resultado como en Go
+    const tiempoServicioFormateado = `${anios}A ${meses}M ${dias}D`;
+
+    return {
+      tiempoTotal: { anios, meses, dias },
+      tiempoBase,
+      tiempoReconocido,
+      tiempoServicioFormateado
+    };
+  }
+
+  /**
+  * Suma el tiempo reconocido al tiempo base (lógica adaptada de Go)
+  */
+  function sumarTiempoReconocido(tiempoBase, { anios: ar, meses: mr, dias: dr }) {
+    let { anios, meses, dias } = tiempoBase;
+
+    // Sumar anios reconocidos
+    anios += ar;
+
+    // Sumar meses reconocidos con ajustes
+    if (dr > 29) {
+      dias += dr - 30;
+      meses++;
+    } else {
+      dias += dr;
+    }
+
+    if (mr > 11) {
+      meses += mr - 12;
+      anios++;
+    } else {
+      meses += mr;
+    }
+
+    // Ajustes finales (como en Go)
+    if (ar > 0 || mr > 0 || dr > 0) {
+      if (dias > 29) {
+        dias -= 30;
+        meses++;
+      }
+      if (meses > 11) {
+        meses -= 12;
+        anios++;
+      }
+    }
+
+    return { anios, meses, dias };
+  }
+
+  // Función original mejorada (para usar como base)
+  function calcularTiempoServicio(fechaActual, fechaIngreso) {
+    let fechaActualUTC = this.normalizarFechaUTC(fechaActual)
+    let fechaIngresoUTC = this.normalizarFechaUTC(fechaIngreso)
+
+
+    if (isNaN(fechaActualUTC.getTime()) || isNaN(fechaIngresoUTC.getTime())) {
+      throw new Error('Fechas inválidas');
+    }
+
+    if (fechaIngresoUTC > fechaActualUTC) {
+      [fechaActualUTC, fechaIngresoUTC] = [fechaIngresoUTC, fechaActualUTC];
+    }
+
+    let anios = fechaActualUTC.getUTCFullYear() - fechaIngresoUTC.getUTCFullYear();
+    let meses = fechaActualUTC.getUTCMonth() - fechaIngresoUTC.getUTCMonth();
+    let dias = fechaActualUTC.getUTCDate() - fechaIngresoUTC.getUTCDate();
+
+    if (dias < 0) {
+      const ultimoDiaMesAnterior = new Date(Date.UTC(
+        fechaActualUTC.getUTCFullYear(),
+        fechaActualUTC.getUTCMonth(),
+        0
+      )).getUTCDate();
+
+      dias = ultimoDiaMesAnterior - fechaIngresoUTC.getUTCDate() + fechaActualUTC.getUTCDate();
+      meses--;
+    }
+
+    if (meses < 0) {
+      meses += 12;
+      anios--;
+    }
+
+    return { anios, meses, dias };
+  }
+
+
+
+  function normalizarFechaUTC(fecha ) {
+    if (!fecha) return new Date(NaN);
+
+    // Si es string con offset de zona horaria
+    if (typeof fecha === 'string' && /[-+]\d{2}:\d{2}$/.test(fecha)) {
+      // Convertir a UTC eliminando el offset
+      const dateObj = new Date(fecha);
+      const utcDate = new Date(dateObj.getTime() + (dateObj.getTimezoneOffset() * 60000));
+      return utcDate;
+    }
+
+    // Si ya es Date o string ISO sin zona horaria
+    return new Date(fecha);
+  }
+
+  /**
+   * @returns {string} Fecha y hora formateada
+   */
+  function getFechaHora() {
+    const fecha = new Date();
+    const dia = String(fecha.getDate()).padStart(2, '0');
+    const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Los meses empiezan en 0
+    const anio = fecha.getFullYear();
+
+    let horas = fecha.getHours();
+    const minutos = String(fecha.getMinutes()).padStart(2, '0');
+    const ampm = horas >= 12 ? 'PM' : 'AM';
+
+    horas = horas % 12;
+    horas = horas ? horas : 12; // La hora 0 se convierte en 12
+
+    return `${dia}/${mes}/${anio} ${horas}:${minutos} ${ampm}`;
+  }
+
+  /**
+   * @returns {string} Fecha y hora formateada
+   */
+  function getFecha() {
+    const fecha = new Date();
+    const dia = String(fecha.getDate()).padStart(2, '0');
+    const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Los meses empiezan en 0
+    const anio = fecha.getFullYear();
+
+    return `${dia}/${mes}/${anio}`;
+  }
+
+
+

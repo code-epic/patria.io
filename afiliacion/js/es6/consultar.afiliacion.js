@@ -2094,9 +2094,9 @@ function ActivarPension() {
         $("#lblFechaResolucion").html("F. Resolución de Retiro");
         $("#_divpension").show();
     }
-    var ti = parseInt(ObjMilitar.tiemposervicio.split("A")[0]);
-    var ingreso = parseInt(ObjMilitar.fingreso.split("-")[0]);
-    $("#txtporcentaje").val(Util.AsignarPorcentajePension(ingreso, ti));
+    // var ti = parseInt(ObjMilitar.tiemposervicio.split("A")[0]);
+    // var ingreso = parseInt(ObjMilitar.fingreso.split("-")[0]);
+    $("#txtporcentaje").val('100');
 
     $("#_btnPensionesAsignadas").show();
 

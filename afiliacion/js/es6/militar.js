@@ -1057,27 +1057,27 @@ class Militar {
 			$("#_cargando").hide();
 
 			ActivarPension();
-			if (militar.Pension.pprestaciones != undefined) {
-				$("#txtporcentaje").val(militar.Pension.pprestaciones);
-				$("#cmbtipopension").val(militar.Pension.causal);
-			}
+			// if (militar.pension.pprestaciones != undefined) {
+			// 	$("#txtporcentaje").val(militar.pension.pprestaciones);
+			// 	$("#cmbtipopension").val(militar.pension.causal);
+			// }
 			$("#_tblDescuentos").html(DescuentosHTML());
 			$("#_tblMedidaJudicial").html(MedidaJudicialHTML());
 			var tMJ = $('#tblMedidaJudicial').DataTable(tablaBasica);
 			tMJ.clear().draw();
-			MostrarMedidaJudicial(militar.Pension.MedidaJudicial, tMJ);
+			MostrarMedidaJudicial(militar.pension.medidajudicial, tMJ);
 
 
 
 
 			var DPen = $('#tblDescuentos').DataTable(tablaBasica);
 			DPen.clear().draw();
-			MostrarDescuentos(militar.Pension.Descuentos, DPen);
+			MostrarDescuentos(militar.pension.descuentos, DPen);
 
 			$("#_tblCredito").html(ListaCreditoHTML());
 			var tCre = $('#tblCredito').DataTable(tablaBasica);
 			tCre.clear().draw();
-			MostrarCredito(militar.Credito, tCre);
+			MostrarCredito(militar.credito, tCre);
 			verificarPrivilegioUsuario();
 		}
 
