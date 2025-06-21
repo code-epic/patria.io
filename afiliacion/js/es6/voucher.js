@@ -38,7 +38,7 @@ function ImprimirNeto(){
         var montostr = accounting.formatMoney(monto, "Bs. ", 2, ".", ",");
         objNeto[lbl] = numeral(parseFloat(monto,2)).format('0,0.00');
         var grado = $("#cmbgrado option:selected").text();
-        var amcuenta = Util.AMCuentaBancaria(ObjMilitar.Persona.DatoFinanciero[0].cuenta);
+        var amcuenta = Util.AMCuentaBancaria(ObjMilitar.persona.datofinanciero[0].cuenta);
 		if(tipo == 97){      
            
             totalAsignacion += monto;
@@ -126,7 +126,7 @@ function ImprimirNeto(){
         </td>
         <td width="400px">
             <center>
-            REPÚBLICA BOLIVARIANA DE VENEZUELA <BR>
+            REPÚLBICA BOLIVARIANA DE VENEZUELA <BR>
             MINISTERIO DEL PODER POPULAR PARA LA DEFENSA<BR>
             VICEMINISTERIO DE SERVICIOS, PERSONAL Y LOGÍSTICA<BR>
             DIRECCIÓN GENERAL DE EMPRESAS Y SERVICIOS<BR>
@@ -244,8 +244,8 @@ class WObtenerConceptos{
 
 function ObtenerConceptosW(){ 
     var Obj = new WObtenerConceptos();
-    var url = Conn.URL + "nomina/conceptos/listar/";    
-    CargarAPI(url, "GET", Obj, Obj);    
+    var url = Conn.URL + "sendrequestget/listarconceptos";    
+    CargarAPI(url, "GET", "", Obj);    
 }
 
 

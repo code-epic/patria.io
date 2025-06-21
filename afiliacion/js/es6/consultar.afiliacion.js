@@ -64,7 +64,7 @@ function Buscar(id) {
 
     ObjMilitar = new Militar();
      var xAPI = {
-      'funcion': 'EJB_CMilitar',
+      'funcion': 'EJB_CMilitarGDoc',
       'parametros': $("#_cedula").val(),
       'valores': ''
     }
@@ -2098,58 +2098,9 @@ function ActivarPension() {
     // var ingreso = parseInt(ObjMilitar.fingreso.split("-")[0]);
     $("#txtporcentaje").val('100');
 
-    $("#_btnPensionesAsignadas").show();
+    // $("#_btnPensionesAsignadas").show();
 
-    switch (situacion) {
-        case "ACT":
-            $("#_btnPensionesAsignadas").hide();
-            $("#btnCalculos").hide();
-            $("#btnActualizarSobreviviente").hide();
-            $("#btnDerechoACrecer").hide();
-            $("#liEstatusPension").hide();
-            break;
-        case "RCP":
-            $("#_bxMedidaJudicial").show();
-            $("#_bxDescuentos").show();
-            $("#liEstatusPension").show();
-            break;
-        case "I":
-            $("#_bxMedidaJudicial").show();
-            $("#_bxDescuentos").show();
-            $("#liEstatusPension").show();
-            break;
-        case "PG":
-            $("#_bxMedidaJudicial").show();
-            $("#_bxDescuentos").show();
-            $("#liEstatusPension").show();
-            break;
-        case "FCP":
-            var t = $('#tblFamiliares').DataTable();
-            t.column(16).visible(false);
-            if (Util.VerificarDerechoACrecer(ObjMilitar.Familiar) != true) {
-                Util.ValidarDerechoACrecer(ObjMilitar.Familiar);
-            }
-            $("#_bxDescuentos").show();
-            $("#tarjetaPensionSobreviviente").show();
-            $("#btnPensionSobreviviente").attr('disabled', false);
-            $("#txtPensionSobreviviente").attr('disabled', false);
-            $("#liEstatusPension").show();
-            $("#_btnPensionesAsignadas").hide();
-            break;
-        case "RSP":
-
-
-            break;
-        case "PG":
-            $("#liEstatusPension").show();
-            break;
-        case "I":
-            $("#liEstatusPension").show();
-            break;
-        default:
-
-            break;
-    }
+   
 
 }
 

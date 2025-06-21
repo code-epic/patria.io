@@ -18,8 +18,9 @@ let opcionesWDire = {
 
 function PrepararDirectiva(){
     var Dir = new Directiva();
-    var ruta = Conn.URL + "nomina/directiva";
+    var ruta = Conn.URL + "sendrequestget/directiva";
     CargarAPI(ruta, "GET", "", Dir);
+
 }
 
 class Directiva {
@@ -133,7 +134,7 @@ let fnx = [];
 let tblP;
 class WListarDirectiva{
     constructor(){}
-    Crear(req){               
+    Crear(req){             
         $("#frmDirectiva").show();
         $("#tablulador").html( HTMLtabulador());        
         tblP = $('#reportedirectiva').DataTable(opcionesWDire);
@@ -174,6 +175,21 @@ class WListarDirectiva{
 }
 
 
+function ListarDirectivaDetalle(){
+    var tex = $("#directiva option:selected").text();
+    var val = $("#directiva option:selected").val();
+    $("#frmDirectiva").hide();
+    if($("#directiva").val() == "0X"){
+        alertErr('Directivas', 'Debe seleccionar una directiva');
+        return false;
+    }
+    $("#_cargando").show();
+    var WDir = new WListarDirectiva();
+    var ruta = Conn.URL + "sendrequestget/ldirectiva/" + val;
+    console.log(ruta);
+    CargarAPI(ruta, "GET", "", WDir);
+}
+
 class WActualizarPrima{
     constructor(){
         this.id = '';
@@ -207,21 +223,6 @@ function SeleccionarPrima(){
     $("#partida").val(fnx[pos].part);
 
 }
-
-function ListarDirectivaDetalle(){
-    var tex = $("#directiva option:selected").text();
-    var val = $("#directiva option:selected").val();
-    $("#frmDirectiva").hide();
-    if($("#directiva").val() == "0X"){
-        alertErr('Directivas', 'Debe seleccionar una directiva');
-        return false;
-    }
-    $("#_cargando").show();
-    var WDir = new WListarDirectiva();
-    var ruta = Conn.URL + "nomina/directiva/listar/" + val;
-    CargarAPI(ruta, "GET", "", WDir);
-}
-
 class WActualizarDirectiva{
     constructor(){
         this.id = '';

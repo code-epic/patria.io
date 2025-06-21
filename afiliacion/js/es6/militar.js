@@ -756,8 +756,9 @@ class Militar {
 
 	//P123 .-
 	Crear(data) {
+		// console.log(data);
 		const militar = data[0];
-		console.log(militar);
+		// console.log(militar);
 		var url = "";
 		var i = 0;
 		var j = 0;
@@ -1322,12 +1323,6 @@ $(function () {
 	}
 });
 
-function CerrarSession() {
-	sessionStorage.removeItem('patria.IO');
-	$(location).attr("href", "../index.html");
-}
-
-
 class LstCarnet {
 	constructor() {
 		// console.log("Cargando la clase de Aprobacion...");
@@ -1453,34 +1448,41 @@ class PACE {
 
 let lstNeto = [];
 
-class WPensiones {
+class WMilitarNetos {
 	constructor() {
 
 	}
 
-	Crear(req) {
+	Crear(data) {
+		const req = data.Cuerpo;
 		var i = 0;
 		$("#cmbNetoPago").html('<option value="X">SELECCIONAR UN PAGO</option>');
 		$("#_netosConceptos").html(ConceptosNetosHTML());
 		var tblC = $('#tblNetosConceptos').DataTable(tablaBasica);
-		// console.log(req);
+		console.log(req);
 
 		req.forEach(pago => {
 			$("#mdlNetos").modal("show");
-			var obj = JSON.parse(pago.calculos).conceptos;
+			var obj = JSON.parse(pago.calc).conceptos;
 			obj.montosisa = pago.montosisa == undefined ? 0 : pago.montosisa;
 			lstNeto.push(obj);
 			var neto = Intl.NumberFormat("de-DE").format(Number(parseFloat(pago.neto).toFixed(2)))
-			$("#cmbNetoPago").append(`<option value="${i}">${pago.nomina} - ${pago.mes} DEL ${pago.hasta.substr(0, 4)} | ( ${pago.hasta} | ${neto} )</option> `)
+			$("#cmbNetoPago").append(`<option value="${i}">${pago.obse} - ${pago.mes} DEL ${pago.hasta.substr(0, 4)} | ( ${pago.hasta} | ${neto} )</option> `)
 			i++;
 		});
 
 	}
 }
 function PensionesAsignadas() {
-	var wpensiones = new WPensiones();
-	var ruta = Conn.URL + "pensionado/consultarneto/" + $("#txtcedula").val();
-	CargarAPI(ruta, "GET", wpensiones, wpensiones);
+	var wMilitar = new WMilitarNetos();
+	// var ruta = Conn.URL + "pensionado/consultarneto/" + $("#txtcedula").val();
+	// CargarAPI(ruta, "GET", wpensiones, wpensiones);
+	 var url = Conn.URL + Conn.IDHash;// + "nomina/listar/concepto/";
+	const xAPI = {
+		"funcion" : "EJB_CNetos",
+		"parametros" : $("#txtcedula").val()
+	}
+	CargarAPI(url, "POST", xAPI, wMilitar);
 }
 
 function consultarNetoPago() {

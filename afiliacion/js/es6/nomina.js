@@ -168,8 +168,8 @@ class Concepto {
         this.grado = $("#cmbGrado").val();
         return this;
     }
-    Crear(req){    
-          
+    Crear(data){    
+        const req = data.Cuerpo;
         $("#_cargandol").show();
         var tabla = `
         <table id="tblConcepto" class="ui celled table table-bordered table-striped dataTable" >
@@ -209,7 +209,7 @@ class Concepto {
             $("#txtCode").val(pos);
             $("#txtCodigo").val(conc.codigo);
             $("#txtDescripcion").val(conc.descripcion);
-            $("#txtFormula").val(conc.formula);
+            $("#txtFormula").val(conc.forumula);
             $("#cmbTipo").val(conc.tipo);
             $("#txtPresupuesto").val(conc.partida);
             $("#txtCuentaContable").val(conc.cuenta);
@@ -244,11 +244,16 @@ function LimpiarFormulario(){
     
 }
 
-function PrepararConceptos(){ 
+function PrepararConceptos(){
+    
+    
   var Obj = new Concepto();
-  var url = Conn.URL + "nomina/listar/concepto/";
-  
-  CargarAPI(url, "GET", Obj, Obj);
+  var url = Conn.URL + Conn.IDHash;// + "nomina/listar/concepto/";
+  const xAPI = {
+    "funcion" : "EJB_CConceptos",
+    "parametros" : ""
+  }
+  CargarAPI(url, "POST", xAPI, Obj);
   
 }
 
@@ -435,13 +440,22 @@ function PrepararNominaView( tipo, des ){
     var Dir = new Directiva();
     $("#cmbTipoX").html(`<option value="${tipo}">${des}</option>`);
     
-    var ruta = Conn.URL + "nomina/directiva";
+    // var ruta = Conn.URL + "nomina/directiva";
+    // CargarAPI(ruta, "GET", "", Dir);
+    var ruta = Conn.URL + "sendrequestget/directiva";
     CargarAPI(ruta, "GET", "", Dir);
+
     myStepper = new Stepper(document.querySelector('#stepper-nomina'));
     $('#mdlPrepararNomina').modal('show');
     var Obj = new ListaConceptos();
-    var url = Conn.URL + "nomina/concepto/listar";
-    CargarAPI(url, "GET", "", Obj);
+    //var url = Conn.URL + "nomina/concepto/listar";
+    var url = Conn.URL + Conn.IDHash;// + "nomina/listar/concepto/";
+    const xAPI = {
+        "funcion" : "EJB_CConceptos",
+        "parametros" : ""
+    }
+    CargarAPI(url, "POST", xAPI, Obj);
+    // CargarAPI(url, "GET", "", Obj);
     ActivarFechaNomina();
     ViewInputFile();
 
@@ -522,10 +536,18 @@ function GenerarNomina(){
     });
     
     //console.log(Nom);
-    var ruta = Conn.URL + "nomina/generar";
-    $('#mdlPrepararNomina').modal('hide');
+    // var ruta = Conn.URL + "nomina/generar";
+    // $('#mdlPrepararNomina').modal('hide');
+
+    var url = Conn.URL  + "sendrequestpost";
+    const xAPI = {
+        "url" : "gnomina",
+        "data" : JSON.stringify(Nom)
+    }
+    console.log(xAPI);
+    CargarAPI(url, "POST", xAPI, Nom);
     waitingDialog.show('Creando nómina por favor espere...');
-    CargarAPI(ruta, "POST", Nom, Nom);
+    // CargarAPI(ruta, "POST", Nom, Nom);
 }
 
 function AceptarNomina(){
@@ -709,6 +731,7 @@ function NominaPreviewHTML(){
 class WListarNomina{
     constructor(){}
     Crear(req){
+        // console.log(req);
         $("#_tblNomina").html(NominaPreviewHTML());
         var t = $('#tblNomina').DataTable(tablaBasica);
         t.clear().draw();        
@@ -752,8 +775,8 @@ class WListarNomina{
 
 function ListarNominasPendientes(){
     var lst = new WListarNomina();
-    var ruta =  Conn.URL + "nomina/listarpendientes/S/1/2020";
-    CargarAPI(ruta, "GET", lst, lst);
+    var ruta =  Conn.URL + "sendrequestget/listartpendientes/S/1/2020";
+    CargarAPI(ruta, "GET", "", lst);
 }
 
 function seleccionarCaso(e){
@@ -850,8 +873,8 @@ function cerrarNomina(oid, estatus){
 
 function ejecutarOperacion(oid, estatus){
     var cerrar = new WCerrarNomina();
-    var ruta =  Conn.URL + "nomina/cerrar/" + oid + "/" + estatus;
-    CargarAPI(ruta, "GET", cerrar, cerrar);
+    var ruta =  Conn.URL + "sendrequestget/nominacerrar/" + oid + "/" + estatus;
+    CargarAPI(ruta, "GET", "", cerrar);
 }
 
 function downloadP(url){
@@ -863,25 +886,23 @@ class WContar{
 
     }
     Crear(req){
-        console.log(req);
-        req.act.forEach(e => {
-            var contenido = 'Activos: <b>' + e.cantidad;
-            $("#" + e.situacion).html(contenido);
+        var contenido = 'Activos: <b>' + req.act.OFIC;
+        $("#OFIC").html(contenido);
+
+        var contenido = 'Activos: <b>' + req.act.TROPF;
+        $("#TROPF").html(contenido);
                         
-        });
-        req.par.forEach(e => {
-            var contenido = 'Paralizado: <b>' + e.cantidad;
-            $("#" + e.situacion + "I").html(contenido);
-                      
-        });
-        ListarNominasPendientes();
+       ListarNominasPendientes();
     }
 }
 
 function ContarPensionados(){
-    var crear = new WContar();
-    var ruta =  Conn.URL + "nomina/ccpensionados";
-    CargarAPI(ruta, "GET", crear, crear);
+    var contar = new WContar();
+    // var ruta =  Conn.URL + "nomina/ccpensionados";    
+    // CargarAPI(ruta, "GET", crear, crear);
+    var url = Conn.URL + "sendrequestget/ccpensionados/";
+
+    CargarAPI(url, "GET", "", contar);
 }
 
 function rechazarNomina(){    
@@ -937,9 +958,14 @@ function ejecutarAprobacion(){
         return false;
     }
     var wprocesar = new WProcesarNomina();
-    $("#_cargando").show();
-    var ruta =  Conn.URL + "nomina/procesar";
-    CargarAPI(ruta, "POST", lst[1], wprocesar);
+    var url = Conn.URL + "sendrequestpost";
+    const lista = {
+        "url" : "nominaprocesar",
+        "data" : JSON.stringify(lst[1])
+    }
+    console.log(lista)
+    CargarAPI(url, "POST", lista, wprocesar);
+
 }
 
 function cargarProcesarNomina(esta){
