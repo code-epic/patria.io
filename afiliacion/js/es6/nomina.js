@@ -145,15 +145,19 @@ function fnxC(fnxc){
 let wLstConceptos = [];
 class Concepto {
     constructor(){
-        this.codigo = '';
-        this.descripcion = '';
-        this.formula = '';
-        this.tipo = 0;
-        this.partida = '';
-        this.cuenta = '';
-        this.estatus = 0;
         this.componente = '';
+        this.partida = '';
+        this.descripcion = '';
+        this.estructura = '';
+        this.descripcionbreve = '';
+        this.cuenta = '';
+        this.tipo = 0;
+        this.codigo = '';
         this.grado = '';
+        this.formula = '';
+        this.creado = '';
+        this.usuario = '';
+        this.estatus = 0;
     }
 
     Obtener(){
@@ -166,6 +170,7 @@ class Concepto {
         this.estatus = parseInt($("#cmbEstatus").val());
         this.componente = $("#cmbComponente").val();
         this.grado = $("#cmbGrado").val();
+        this.creado = new Date();
         return this;
     }
     Crear(data){    
@@ -225,10 +230,18 @@ function consultarConcepto(){
 }
 
 function AgregarConceptos(){    
-    var Obj = new Concepto();
-    var url = Conn.URL + "nomina/concepto";
+    var concepto = new Concepto();
+    concepto.Obtener();
+    // var url = Conn.URL + "nomina/concepto";
     $("#_cargando").show();
-    CargarAPI(url, "POST", Obj.Obtener());
+    // CargarAPI(url, "POST", Obj.Obtener());
+     var url = Conn.URL  + Conn.IDHash;
+    const xAPI = {
+        "funcion" : "EJB_IConceptos",
+        "valores" : JSON.stringify(concepto)
+    }
+    console.log(xAPI);
+    CargarAPI(url, "POST", xAPI, concepto);
     LimpiarFormulario();
 }
 

@@ -850,10 +850,10 @@ class Militar {
 
 			$("#txtmfechaultimoascenso").val(Util.ConvertirFechaHumana(militar.fascenso));
 			$("#txtmfecharesuelto").val(Util.ConvertirFechaHumana(militar.fresuelto));
-			$("#pensionsobreviviente").hide();
-			if (militar.pprestaciones != undefined) {
-				$("#pensionsobreviviente").show();
-			}
+			// $("#pensionsobreviviente").hide();
+			// if (militar.pprestaciones != undefined) {
+			// 	$("#pensionsobreviviente").show();
+			// }
 			$("#txtposicion").val(militar.posicion);
 			$("#txtfechagraduacion").val(Util.ConvertirFechaHumana(militar.fingreso));
 			$("#_fingreso").html(Util.ConvertirFechaHumana(militar.fingreso));

@@ -55,7 +55,6 @@ function Ingresar(){
      var s = json.token.split(".");
      var MenuJS = JSON.parse(atob(s[1]));
      
-     console.log(MenuJS);
      if(MenuJS.Usuario.modulo != undefined){
        var mod = Array.isArray(MenuJS.Usuario.modulo)==true?MenuJS.Usuario.modulo[0]:"afiliacion";
       if( mod.url.indexOf("http") !== -1 ){
