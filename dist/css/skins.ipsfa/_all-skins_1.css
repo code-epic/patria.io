@@ -1244,10 +1244,6 @@
   color: #006B9F;
 }
 
- /* Color Fondo SOMBREADO del cuadrito que reduce la pantalla Franja Delgada (Corta) */
-.skin-yellow .main-header .navbar .sidebar-toggle:hover {
-  background-color: #cacfd2;
-}
 @media (max-width: 767px) {
   .skin-yellow .main-header .navbar .dropdown-menu li.divider {
     background-color: rgba(255, 255, 255, 0.1);
@@ -1305,7 +1301,6 @@
 .skin-yellow .sidebar-menu > li:hover > a,
 .skin-yellow .sidebar-menu > li.active > a {
   color: #17202a; /*Letra Sombreado*/
-  background: #cacfd2; /*Sombreado*/
   border-left-color: #CCCCCC; /*Borde de Raya*/
 }
 
