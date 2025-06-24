@@ -72,7 +72,8 @@ function ImprimirNeto(){
             if(tipo == 1){ //Asignacion   
                 var sueldomensual = obtenerDescripcionConceptos(des)==""?des:obtenerDescripcionConceptos(des); 
                 if( des == "SUELDO MENSUAL" ){
-                    sueldomensual = `PENSIÓN MENSUAL ( ${porcentaje} % )`;                    
+                    sueldomensual = `SUELDO MENSUAL ( ${porcentaje} % )`;        
+                    sueldomensual = `SUELDO MENSUAL `;              
                 } 
                 fila += `
                     <tr>
@@ -128,17 +129,14 @@ function ImprimirNeto(){
             <center>
             REPÚLBICA BOLIVARIANA DE VENEZUELA <BR>
             MINISTERIO DEL PODER POPULAR PARA LA DEFENSA<BR>
-            VICEMINISTERIO DE SERVICIOS, PERSONAL Y LOGÍSTICA<BR>
-            DIRECCIÓN GENERAL DE EMPRESAS Y SERVICIOS<BR>
-            INSTITUTO DE PREVISIÓN SOCIAL DE LA <BR>FUERZA ARMADA NACIONAL BOLIVARIANA<BR>
-            RIF: G20003692-3
+            EJÉRCITO BOLIVARIANO<BR>
+            DIRECCIÓN DE TECNOLOGIAS DE LA INFORMACIÓN Y LAS COMUNICACIONES<BR>
             </center>
         </td>
         <td width="200px" valign="top"></td>
         </tr>
     </table >
-        <h3>MILITAR TITULAR<BR>
-            RECIBO DE PAGO DE PENSIÓN CORRESPONDIENTE A:<br>
+        <h3>PLANILLA DE LIQUIDACIÓN DE HABERES EN <br>
             ${nomina[0]}
         </h3>
         <br>
@@ -175,29 +173,23 @@ function ImprimirNeto(){
         </tfoot>
     </table>
     <br>
-    <h3> OTRAS DEDUCCIONES
-    <table style="width:800px" class="tablaneto">
-        <tr>
-            <td align="justify" style="width:800px;height: 80px">
-            <b>CUENTA BANCARIA</b>${amcuenta}<br>
-            ${montosisatxt}</td>                        
-        </tr>
-    </table>
-    <br><br>
-    <table>
-        <tr>
-            <td align="justify" style="width:800px;height: 80px">
-                Direccón: Avenida Los Próceres Edif. Sede del IPSFA. Gerencia de Afiliación Planta Baja. 
-                Santa Mónica, municipio Libertador. Caracas, Distrito Capital. Teléfonos: (0212) - 609-23-10 / 609-23-11 /609-23-12 
-            </td>                        
-        </tr>
-            
-    </table></div>
-    </center>`);
+   `);
+
+    // <h3> OTRAS DEDUCCIONES
+    // <table style="width:800px" class="tablaneto">
+    //     <tr>
+    //         <td align="justify" style="width:800px;height: 80px">
+    //         <b>CUENTA BANCARIA</b>${amcuenta}<br>
+    //         ${montosisatxt}</td>                        
+    //     </tr>
+    // </table>
+    // <br><br>
+    // </div>
+    // </center>
 
     ventana.document.head.innerHTML = ` <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SSSIFANB</title>
+    <title>Patria.IO  - NETO</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
     <style type="text/css">

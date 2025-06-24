@@ -74,7 +74,7 @@ function fnxC(fnxc){
     var fn = $('#txtFormula').val();
     switch (fnxc) {
         case 'sueldo_basico':
-            $('#txtFormula').val(fn + ' $sueldo_basico ' );
+            $('#txtFormula').val(fn + ' $sueldo_base ' );
             break;
         case 'porcentaje_pension':
             $('#txtFormula').val(fn + ' $porcentaje_pension ' );
@@ -1011,5 +1011,4 @@ function alertNotify (msj, color){
         } 
     );
 }
-
 

@@ -303,3 +303,5 @@ function HTMLtabulador(){
         </table>`;
 
 }
+
+
