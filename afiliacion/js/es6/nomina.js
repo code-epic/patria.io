@@ -1,71 +1,7 @@
 let MD5codigo = "";
 
-let opcionesf = {
-    destroy: true,
-    'paging': false,
-    'lengthChange': false,
-    'searching': false,
-    'ordering': false,
-    'info': false,
-    'autoWidth': false,
-    "aLengthMenu": [[10, 25, 5, -1], [10, 25, 5, "Todo"]],
-    "bStateSave": true,
-    "language": {
-        "lengthMenu": "Mostar _MENU_ filas por pagina",
-        "zeroRecords": "Nada que mostrar",
-        "info": "Mostrando _PAGE_ de _PAGES_",
-        "infoEmpty": "No se encontro nada",
-        "infoFiltered": "(filtered from _MAX_ total records)",
-        "search": "Buscar",
-        "paginate": {
-            "first": "Primero",
-            "last": "Ultimo",
-            "next": "Siguiente",
-            "previous": "Anterior"
-        },
-    },
-}
-
-let opcionesDire = {
-    ordering: false,
-    paging: false,          
-    columnDefs: [ {
-        orderable: false,
-        className: 'select-checkbox',
-        targets:   0
-    } ],
-    select: {
-        style: 'multi'
-    },
-    scrollY:        300,
-    deferRender:    true,
-    scroller:       true,
-    language: {
-        "lengthMenu": "Mostar _MENU_ filas por pagina",
-        "zeroRecords": "Nada que mostrar",
-        "info": "Mostrando _PAGE_ de _PAGES_",
-        "infoEmpty": "No se encontro nada",
-        "infoFiltered": "(filtered from _MAX_ total records)",
-        "search": "Buscar"
-    }
-};
 
 
-let opcionesConceptos = {
-    ordering: false,
-    paging: false,            
-    scrollY:        320,
-    deferRender:    true,
-    scroller:       true,
-    language: {
-        "lengthMenu": "Mostar _MENU_ filas por pagina",
-        "zeroRecords": "Nada que mostrar",
-        "info": "Mostrando _PAGE_ de _PAGES_",
-        "infoEmpty": "No se encontro nada",
-        "infoFiltered": "(filtered from _MAX_ total records)",
-        "search": "Buscar"
-    }
-};
 
 let intFila = 0;
 
@@ -174,87 +110,67 @@ class Concepto {
         return this;
     }
     Crear(data){    
-        const req = data.Cuerpo;
-        $("#_cargandol").show();
-        var tabla = `
-        <table id="tblConcepto" class="ui celled table table-bordered table-striped dataTable" >
-            <thead>
-                <tr role="row">
-                    <th>#</th>
-                    <th>PARTIDA</th>
-                    <th>CODIGO</th>                                            
-                    <th>DESCRIPCION</th>                   
-                </tr>
-            </thead>
-        </table>`;
-        $("#_TblConceptos").html(tabla);        
-        var t = $('#tblConcepto').DataTable(opcionesConceptos);
-        t.clear().draw();
-        wLstConceptos = req;
-        if(req == null) {
-            
-        }else{
-            var i = 0;
-            req.forEach( v => {           
-                i++;
-                t.row.add([
-                    i,
-                    v.partida,
-                    v.codigo,
-                    v.descripcion
-                ]).draw(false);
+        console.log(data);
+        if( data.msj == undefined ){
+            // PrepararConceptos();
+           
+        
+            const req = data.Cuerpo;
+            $("#_cargandol").show();
+            var tabla = `
+            <table id="tblConcepto" class="ui celled table table-bordered table-striped dataTable" >
+                <thead>
+                    <tr role="row">
+                        <th>#</th>
+                        <th>PARTIDA</th>
+                        <th>CODIGO</th>                                            
+                        <th>DESCRIPCION</th>                   
+                    </tr>
+                </thead>
+            </table>`;
+            $("#_TblConceptos").html(tabla);        
+            var t = $('#tblConcepto').DataTable(opcionesConceptos);
+            t.clear().draw();
+            wLstConceptos = req;
+            if(req == null) {
+                
+            }else{
+                var i = 0;
+                req.forEach( v => {           
+                    i++;
+                    t.row.add([
+                        i,
+                        v.partida,
+                        v.codigo,
+                        v.descripcion
+                    ]).draw(false);
+                });
+            }
+
+            $("#_cargandol").hide();
+            $('#tblConcepto tbody').on('dblclick', 'tr', function () {
+                var data = t.row(this).data();
+                var pos = data[0] - 1;
+                var conc = wLstConceptos[pos];
+                $("#txtCode").val(pos);
+                $("#txtCodigo").val(conc.codigo);
+                $("#txtDescripcion").val(conc.descripcion);
+                $("#txtFormula").val(conc.forumula);
+                $("#cmbTipo").val(conc.tipo);
+                $("#txtPresupuesto").val(conc.partida);
+                $("#txtCuentaContable").val(conc.cuenta);
+                $("#cmbEstatus").val(conc.estatus);
+                $("#btnAgregarConceptos").hide();
+                $("#btnModificarConceptos").show();
             });
+        }else {
+            PrepararConceptos();
+            return false;
+            
         }
-
-        $("#_cargandol").hide();
-        $('#tblConcepto tbody').on('dblclick', 'tr', function () {
-            var data = t.row(this).data();
-            var pos = data[0] - 1;
-            var conc = wLstConceptos[pos];
-            $("#txtCode").val(pos);
-            $("#txtCodigo").val(conc.codigo);
-            $("#txtDescripcion").val(conc.descripcion);
-            $("#txtFormula").val(conc.forumula);
-            $("#cmbTipo").val(conc.tipo);
-            $("#txtPresupuesto").val(conc.partida);
-            $("#txtCuentaContable").val(conc.cuenta);
-            $("#cmbEstatus").val(conc.estatus);
-        });
     }
     
 
-}
-function consultarConcepto(){
-
-    return false;
-}
-
-function AgregarConceptos(){    
-    var concepto = new Concepto();
-    concepto.Obtener();
-    // var url = Conn.URL + "nomina/concepto";
-    $("#_cargando").show();
-    // CargarAPI(url, "POST", Obj.Obtener());
-     var url = Conn.URL  + Conn.IDHash;
-    const xAPI = {
-        "funcion" : "EJB_IConceptos",
-        "valores" : JSON.stringify(concepto)
-    }
-    console.log(xAPI);
-    CargarAPI(url, "POST", xAPI, concepto);
-    LimpiarFormulario();
-}
-
-
-function LimpiarFormulario(){
-    $("#txtCodigo").val('');
-    $("#txtDescripcion").val('');
-    $("#txtFormula").val('');
-    $("#txtPresupuesto").val('');
-    $("#cmbEstatus").val('')
-    $.notify("Envio de datos correctos...");
-    $("#_cargando").hide();
-    
 }
 
 function PrepararConceptos(){
@@ -269,6 +185,65 @@ function PrepararConceptos(){
   CargarAPI(url, "POST", xAPI, Obj);
   
 }
+
+// function consultarConcepto(){
+
+//     return false;
+// }
+
+
+
+
+function AgregarConceptos(){    
+    var concepto = new Concepto();
+    concepto.Obtener();
+    $("#_cargando").show();
+     var url = Conn.URL  + Conn.IDHash;
+    const xAPI = {
+        "funcion" : "EJB_IConceptos",
+        "valores" : JSON.stringify(concepto)
+    }
+    CargarAPI(url, "POST", xAPI, concepto);
+    LimpiarFormulario();
+}
+
+function ModificarConceptos(){
+    var concepto = new Concepto();
+    concepto.Obtener();
+    $("#_cargando").show();
+     var url = Conn.URL  + Conn.IDHash;
+    const xAPI = {
+        "funcion" : "EJB_AConceptos",
+        "valores" : JSON.stringify(concepto)
+    }
+    CargarAPI(url, "POST", xAPI, concepto);
+    LimpiarFormulario();
+
+}
+
+function CancelarConceptos(){    
+  LimpiarFormulario(); 
+    
+}
+
+
+function LimpiarFormulario(){
+    $("#txtCode").val('');
+    $("#txtCodigo").val('');
+    $("#txtDescripcion").val('');
+    $("#txtFormula").val('');
+    $("#cmbTipo").val('1');
+    $("#txtPresupuesto").val('');
+    $("#txtCuentaContable").val('');
+    $("#cmbEstatus").val(1);
+    $("#btnAgregarConceptos").show();
+    $("#btnModificarConceptos").hide();
+    $("#_cargando").hide();
+    
+    
+    
+}
+
 
 function ActivarFechaNomina(){
     $('#fechainicio').datepicker({
@@ -915,10 +890,7 @@ class WContar{
 
 function ContarPensionados(){
     var contar = new WContar();
-    // var ruta =  Conn.URL + "nomina/ccpensionados";    
-    // CargarAPI(ruta, "GET", crear, crear);
     var url = Conn.URL + "sendrequestget/ccpensionados/";
-
     CargarAPI(url, "GET", "", contar);
 }
 

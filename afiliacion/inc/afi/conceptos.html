@@ -180,11 +180,11 @@
                             <div class="col-md-6 col-sm-12">
                                 <label>Componente</label>
                                 <select id="cmbComponente" class="form-control" required >
-                                    <option value="TODOS" selected>Todos los componentes</option>
+                                    <!-- <option value="TODOS" selected>Todos los componentes</option> -->
                                     <option value="EJB">EJERCITO BOLIVARIANO</option>
-                                    <option value="AMB">ARMADA BOLIVARIANA</option>
+                                    <!-- <option value="AMB">ARMADA BOLIVARIANA</option>
                                     <option value="GNB">GUARDIA NACIONAL BOLIVARIANA</option>
-                                    <option value="AVB">AVIACION BOLIVARIANA</option>
+                                    <option value="AVB">AVIACION BOLIVARIANA</option> -->
                                 </select>
                             </div>
                            
@@ -202,8 +202,21 @@
                     <div class="overlay" id="_cargando" style="display:none">
                         <i class="fa fa-refresh fa-spin"></i>
                     </div>
-                    <div class="box-footer">
-                        <button onclick="AgregarConceptos()" class="btn btn-success pull-right" >Salvar Datos</button>                
+                    <div class="box-footer" >
+                        <button 
+                            onclick="AgregarConceptos()" 
+                            id="btnAgregarConceptos" 
+                            class="btn btn-success pull-left" >Salvar conceptos</button>
+                        &nbsp;&nbsp;<button 
+                            onclick="ModificarConceptos()"   
+                            id="btnModificarConceptos" style="display: none;" 
+                            class="btn btn-warning pull-left" >Modificar conceptos</button>
+                        &nbsp;&nbsp;<button 
+                            onclick="CancelarConceptos()"
+                            class="btn btn-danger pull-right" >Cancelar</button>            
+                    </div>
+                    <div class="box-footer" >
+                                        
                     </div>
                 </div>
             </div>
