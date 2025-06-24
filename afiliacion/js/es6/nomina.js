@@ -286,6 +286,7 @@ function ActivarFechaNomina(){
 class DirCon {
 
     Crear(DATA){        
+        // console.log(DATA);
         let fnx  = DATA.fnx;
         let fnxc = DATA.fnxC;
         //console.log(fnxc);
@@ -319,7 +320,7 @@ class DirCon {
         tblP.row.add([
             '',
             'sueldo_mensual',
-            'PENSION',
+            'SUELDO MENSUAL',
             '40701010101',
             'DIR-SM',
             ''
@@ -407,8 +408,8 @@ function selccionarConceptos(tblP){
 }
 
 function CargarDirectivaConceptos(){
-    var Obj = new DirCon();
-    var url = Conn.URL + "nomina/directiva/detalle/" + $("#directiva").val();
+    var DtDirectiva = new DirCon();
+    var url = Conn.URL + "sendrequestget/dtdirectiva/" + $("#directiva").val();
     if($("#fechainicio").val() == "" || $("#fechavigencia").val() == "" ){
         alert("Debe seleccionar una fecha para la nómina");
         return false;
@@ -423,7 +424,8 @@ function CargarDirectivaConceptos(){
     var codigo = id + directiva + nombre + tipo + fechainicio + fechafin + fecha;
     MD5codigo = MD5(codigo);
 
-    CargarAPI(url, "GET", "", Obj);
+    // console.log(url);
+    CargarAPI(url, "GET", "", DtDirectiva);
     myStepper.next();
 }
 
@@ -502,6 +504,8 @@ class WNomina {
     Crear(req){
         waitingDialog.hide();
         alertNotify('Proceso exitoso', 'success');
+
+        $('#mdlPrepararNomina').modal('hide');
         
         $("#_nominalista").html(`
             
@@ -557,7 +561,7 @@ function GenerarNomina(){
         "url" : "gnomina",
         "data" : JSON.stringify(Nom)
     }
-    console.log(xAPI);
+    // console.log(xAPI);
     CargarAPI(url, "POST", xAPI, Nom);
     waitingDialog.show('Creando nómina por favor espere...');
     // CargarAPI(ruta, "POST", Nom, Nom);
@@ -843,8 +847,8 @@ class WVerPartida{
 }
 function verPartida(oid){
     var lst = new WVerPartida();
-    var ruta =  Conn.URL + "nomina/verpartida/" + oid;
-    CargarAPI(ruta, "GET", lst, lst);
+    var ruta =  Conn.URL + "sendrequestget/verpartida/" + oid;
+    CargarAPI(ruta, "GET", "", lst);
 }
 
 function VerPartidaHTML(){
