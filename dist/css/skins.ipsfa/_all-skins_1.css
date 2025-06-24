@@ -1244,10 +1244,6 @@
   color: #006B9F;
 }
 
- /* Color Fondo SOMBREADO del cuadrito que reduce la pantalla Franja Delgada (Corta) */
-.skin-yellow .main-header .navbar .sidebar-toggle:hover {
-  background-color: #cacfd2;
-}
 @media (max-width: 767px) {
   .skin-yellow .main-header .navbar .dropdown-menu li.divider {
     background-color: rgba(255, 255, 255, 0.1);
@@ -1294,18 +1290,18 @@
 
 /* Color De Fondo del Cuadro (MEN�)*/
 .skin-yellow .sidebar-menu > li.header {
-  color: #4b646f; /*Letra*/
-  background: #ecf0f5; /*Fondo*/
+  color: #fff; /*Letra*/
+  background-color: #c46160;
 }
 .skin-yellow .sidebar-menu > li > a {
+  color: #fff;
   border-left: 3px solid transparent;
 }
 
 /* Color de SOMBREADO, Letra, Rayita izquierda (Minima) del men� Izquierdo*/
 .skin-yellow .sidebar-menu > li:hover > a,
 .skin-yellow .sidebar-menu > li.active > a {
-  color: #17202a; /*Letra Sombreado*/
-  background: #cacfd2; /*Sombreado*/
+  color: #fff; /*Letra Sombreado*/
   border-left-color: #CCCCCC; /*Borde de Raya*/
 }
 
@@ -1317,7 +1313,7 @@
 
 /*Color de Letra menu izquierdo*/
 .skin-yellow .sidebar a {
-  color:  #17202a; /*Color de Letra menu izquierdo*/
+  color:  #fff; /*Color de Letra menu izquierdo*/
 }
 .skin-yellow .sidebar a:hover {
   text-decoration: none;
@@ -1325,6 +1321,10 @@
 
 /*Color de Letra, Color de Letra Sombreada Sub-menu izquierdo*/
 .skin-yellow .treeview-menu > li > a {
+  color: #FFFFFF; /*Color de Letra Sub-menu izquierdo*/
+}
+
+.skin-yellow .treeview-menu > li > a > span{
   color: #FFFFFF; /*Color de Letra Sub-menu izquierdo*/
 }
 .skin-yellow .treeview-menu > li.active > a,
@@ -1809,7 +1809,7 @@
   a > span {
     font-family:  Arial, "Arial",
           Times, serif;
-    color: black;
+    color: #fff;
     font-size: 12pt
 
   }
