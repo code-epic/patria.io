@@ -1290,18 +1290,18 @@
 
 /* Color De Fondo del Cuadro (MEN�)*/
 .skin-yellow .sidebar-menu > li.header {
-  color: #fff; /*Letra*/
-  background-color: #c46160;
+  color: #4b646f; /*Letra*/
+  background: #ecf0f5; /*Fondo*/
 }
 .skin-yellow .sidebar-menu > li > a {
-  color: #fff;
+  color: #17202a;
   border-left: 3px solid transparent;
 }
 
 /* Color de SOMBREADO, Letra, Rayita izquierda (Minima) del men� Izquierdo*/
 .skin-yellow .sidebar-menu > li:hover > a,
 .skin-yellow .sidebar-menu > li.active > a {
-  color: #fff; /*Letra Sombreado*/
+  color: #17202a; /*Letra Sombreado*/
   border-left-color: #CCCCCC; /*Borde de Raya*/
 }
 
@@ -1321,15 +1321,12 @@
 
 /*Color de Letra, Color de Letra Sombreada Sub-menu izquierdo*/
 .skin-yellow .treeview-menu > li > a {
-  color: #FFFFFF; /*Color de Letra Sub-menu izquierdo*/
+  color: #17202a; /*Color de Letra Sub-menu izquierdo*/
 }
 
-.skin-yellow .treeview-menu > li > a > span{
-  color: #FFFFFF; /*Color de Letra Sub-menu izquierdo*/
-}
 .skin-yellow .treeview-menu > li.active > a,
 .skin-yellow .treeview-menu > li > a:hover {
-  color: #FFFFFF; /*Color de Letra Sombreada Sub-menu izquierdo*/
+  color: #17202a; /*Color de Letra Sombreada Sub-menu izquierdo*/
 }
 .skin-yellow .sidebar-form {
   border-radius: 3px;
@@ -1809,7 +1806,7 @@
   a > span {
     font-family:  Arial, "Arial",
           Times, serif;
-    color: #fff;
+    color: #000;
     font-size: 12pt
 
   }
