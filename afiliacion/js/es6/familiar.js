@@ -179,6 +179,7 @@ function CargarFamiliaresModal(militar, t){
         var data = t.row(this).data();
         
         var familiar = ObjMilitar.Familiar[data[0]-1];
+        
         $("#lblFilaF").html(data[0]-1);
         $("#_bfcedula").attr("attced",data[1]);
         $("#_lblConstanciaPension").hide();
@@ -368,7 +369,7 @@ function PensionAsignadaSobre(pos){
 
 
 function FamiliaresHTML() {
-    var html = `<table class="ui celled table " cellspacing="0" width="100%" id="tblFamiliares" >
+    const html = `<table class="ui celled table " cellspacing="0" width="100%" id="tblFamiliares" >
     <thead class="familiares">
       <tr>
         <th>#.</th>
