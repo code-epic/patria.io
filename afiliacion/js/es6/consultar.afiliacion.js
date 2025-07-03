@@ -56,7 +56,6 @@ function Buscar(id) {
         $("#modMsj").modal("show");
         return false;
     }
-    $("#_bxMedidaJudicial").hide();
     $("#liEstatusPension").hide();
     $("#_cargando").show();
     $("#_lblConstanciaPension").hide();
@@ -2080,7 +2079,6 @@ function traeDireccion() {
 
 function ActivarPension() {
     $("#_divpension").hide();
-    $("#_bxMedidaJudicial").hide();
     $("#_bxDescuentos").hide();
     $("#tarjetaPensionSobreviviente").hide();
     $("#liEstatusPension").hide();

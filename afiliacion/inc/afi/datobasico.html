@@ -11,13 +11,13 @@
           title="Reportes varios">
           <i class="fa fa-book"></i></button>
         <ul class="dropdown-menu">
-          <li><a href="#" onclick="CConstanciaAfiliacion()" id="_btnConstancia">Constancia de Afiliación</a></li>
+          <li><a href="#" onclick="CConstanciaAfiliacion()" id="_btnConstancia">Constancia de Trabajo</a></li>
           <li style="display: none"><a href="#" onclick="ConstanciaCredito();" id="_btnConstanciaCredito">Solvencia de
               Credito</a></li>
-          <li class="divider"></li>
+          <li class="divider" style="display: none"></li>
           <li onclick="CConstanciaSolvencia()" id="_btnCCSolvencia"><a href="#">Constancia de Trabajo</a></li>
           <li><a href="#" onclick="CConstanciaARC()" id="_btnCARC">Constancia de ARC</a></li>
-          <li class="divider"></li>
+          <li class="divider" style="display: none"></li>
           <li style="display: none"><a href="#" onclick="ConstanciaFAOV();" id="_btnConstanciaFAOV">Constancia de
               FAOV</a></li>
         </ul>
@@ -203,10 +203,10 @@
                   data-toggle="tab">Dirección</a></li>
               <li role="presentation"><a href="#mdfisico" aria-controls="fisico" role="tab" data-toggle="tab">Datos
                   Fisicos</a></li>
-              <li role="presentation"><a href="#mpartida" aria-controls="partida" role="tab" data-toggle="tab"
-                  style="display: none">Part. Nacimiento</a></li>
-              <li role="presentation" style="display:none"><a href="#mdsueldo" aria-controls="sueldo" role="tab"
+              <li role="presentation"><a href="#mdsueldo" aria-controls="sueldo" role="tab"
                   data-toggle="tab">Sueldo</a></li>
+              <li role="presentation" style="display: none;"><a href="#mpartida" aria-controls="partida" role="tab" data-toggle="tab"
+                  style="display: none">Part. Nacimiento</a></li>
               <li role="presentation" style="display:none"><a href="#mdcarnet" aria-controls="carnet" role="tab"
                   data-toggle="tab">TIM</a></li>
               <li role="presentation" style="display:none"><a href="#mddocu" aria-controls="documento" role="tab"

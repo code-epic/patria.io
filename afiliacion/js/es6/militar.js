@@ -345,15 +345,6 @@ class Familiar {
 		dir.casa = $("#txtcasaf").val().toUpperCase();
 		dir.apartamento = $("#txtaptof").val().toUpperCase();
 		this.Persona.Direccion[0] = dir;
-		if ($("#txtfechacondicionf").val() == '') {
-			this.Persona.CondicionEspecial.fecha == '';
-		} else {
-			this.Persona.CondicionEspecial.fecha = new Date(Util.ConvertirFechaUnix($("#txtfechacondicionf").val())).toISOString();
-		}
-
-		this.Persona.CondicionEspecial.tipodiscapacidad = $("#cmbDiscapacidadf").val();
-		this.Persona.CondicionEspecial.diagnostico = $("#txtdiagnosticof").val();
-		this.Persona.CondicionEspecial.nombrehospitalmilitar = $("#cmbHospitalf").text();
 		var bnc = new DatoFinanciero();
 		bnc.tipo = $("#cmbmtipofinancieraf option:selected").val();
 		bnc.institucion = $("#cmbminstfinancieraf option:selected").val();
@@ -485,8 +476,6 @@ class Persona {
 		this.foto = "";
 		this.huella = "";
 		this.firma = "";
-
-		this.CondicionEspecial = new CondicionEspecial();
 	}
 }
 
@@ -756,13 +745,16 @@ class Militar {
 
 	//P123 .-
 	Crear(data) {
-		// console.log(data);
-		const militar = data[0];
-		// console.log(militar);
+		let militar = data[0];
 		var url = "";
 		var i = 0;
-		var j = 0;
 
+		const fecha = new Date(militar.fingreso)
+		const hoy = new Date()
+
+		const aux = calcularTiempoServicioCompleto(hoy, fecha)
+		let tiemposervicio = aux.tiempoServicioFormateado
+		militar.tiemposerviscio = tiemposervicio;
 
 		if (militar.tipo != undefined) {
 			$("#_cedula").val("");
@@ -805,7 +797,7 @@ class Militar {
 			var rutaimg = Conn.URLIMG;
 			url = rutaimg + $("#txtcedula").val() + ".jpg";
 			if (militar.persona.foto != undefined) {
-				rutaimg = Conn.URLTEMP;
+				rutaimg = 'https://app.ipsfa.gob.ve/sssifanb/' + Conn.URLTEMP;
 				url = rutaimg + $("#txtcedula").val() + "/foto.jpg";
 			}
 			$("#minifoto").attr("href", url);
@@ -973,7 +965,6 @@ class Militar {
 			$("#_lblfechacarnet").html(Util.ConvertirFechaHumana(militar.tim.fechavencimiento));
 			$("#_lblcreacioncarnet").html(Util.ConvertirFechaHumana(militar.tim.fechacreacion));
 
-			$("#txtnumhistoriaclinica").val(militar.numerohistoria);
 			$("#_divpension").hide();
 			$("#lblFechaResolucion").html("Fecha de Resolución");
 			$("#_btnCCSolvencia").hide();
@@ -1216,7 +1207,6 @@ class Militar {
 		this.Persona.RedSocial.instagram = $("#txtminstagran").val().toUpperCase();
 
 		this.codigocomponente = $("#txtcodigocomponente").val();
-		this.numerohistoria = $("#txtnumhistoriaclinica").val();
 		this.Pension.pprestaciones = parseFloat($("#txtporcentaje").val());
 		this.Pension.causal = $("#cmbtipopension").val();
 
@@ -1286,14 +1276,6 @@ class CuentaBancaria {
 	}
 }
 
-class CondicionEspecial {
-	constructor() {
-		this.fecha = "";
-		this.tipodiscapacidad = 0;
-		this.diagnostico = "";
-		this.nombrehospitalmilitar = "";
-	}
-}
 class Clave {
 	constructor() {
 		this.login = "";
@@ -1459,7 +1441,6 @@ class WMilitarNetos {
 		$("#cmbNetoPago").html('<option value="X">SELECCIONAR UN PAGO</option>');
 		$("#_netosConceptos").html(ConceptosNetosHTML());
 		var tblC = $('#tblNetosConceptos').DataTable(tablaBasica);
-		console.log(req);
 
 		req.forEach(pago => {
 			$("#mdlNetos").modal("show");
