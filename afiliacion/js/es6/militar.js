@@ -754,7 +754,7 @@ class Militar {
 
 		const aux = calcularTiempoServicioCompleto(hoy, fecha)
 		let tiemposervicio = aux.tiempoServicioFormateado
-		militar.tiemposerviscio = tiemposervicio;
+		militar.tiemposervicio = tiemposervicio;
 
 		if (militar.tipo != undefined) {
 			$("#_cedula").val("");
