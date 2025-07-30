@@ -121,7 +121,7 @@ $(function () {
   CargarUrl("_bxTarjeta", "afi/tarjeta");
   CargarUrl("_bxDatoBasico", "afi/datobasico");
   CargarUrl("_bxMedidaJudicial", "afi/medidajudicial");
-  CargarUrl("_bxCredito", "afi/credito");
+  // CargarUrl("_bxCredito", "afi/credito");
 
   CargarUrl("_frmCreditoPrestamo", "afi/creditofrm");
 

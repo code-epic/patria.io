@@ -1,4 +1,5 @@
 let ObjMilitar = new Militar();
+let NewObjMilitar = new NewMilitar();
 let OqMilitar = new Militar();
 let ObjPACE = new PACE();
 
@@ -63,6 +64,7 @@ function Buscar(id) {
     $("#_imgfamiliar").attr("src", "images/ndisponible.jpg");
 
     ObjMilitar = new Militar();
+   
      var xAPI = {
       'funcion': 'EJB_CMilitarGDoc',
       'parametros': $("#_cedula").val(),
@@ -70,6 +72,9 @@ function Buscar(id) {
     }
     var url = Conn.URL  + Conn.IDHash;
     CargarAPI(url, "POST", xAPI, ObjMilitar);
+
+    
+    
 
     //var url = Conn.URL + "militar/pace/" + $("#_cedula").val();
     //CargarAPI(url, "GET", "", ObjPACE);

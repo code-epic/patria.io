@@ -883,6 +883,10 @@ class WContar{
 
         var contenido = 'Activos: <b>' + req.act.TROPF;
         $("#TROPF").html(contenido);
+
+         var contenido = 'Activos: <b>' + req.act.TALIS;
+        $("#TALIS").html(contenido);
+                        
                         
        ListarNominasPendientes();
     }

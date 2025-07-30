@@ -94,7 +94,7 @@ function ImprimirNeto(){
                     </tr>`;
                 asignacion += monto;
             }else{ //Deduccion
-                console.log("0000 DE " + des);
+                // console.log("0000 DE " + des);
                 var strconceptos = obtenerDescripcionConceptos(des)==""?des:obtenerDescripcionConceptos(des);
                 fila += `
                     <tr>
@@ -113,8 +113,8 @@ function ImprimirNeto(){
                 <td align="right" style="width:200px">${accounting.formatMoney(asignacion, "Bs. ", 2, ".", ",")}&nbsp;&nbsp;</td>
                 <td align="right" style="width:200px">${accounting.formatMoney(deduccion, "Bs. ", 2, ".", ",")}&nbsp;&nbsp;</td>
             </tr>`;
-    console.log ( asignacion );
-    console.log ( deduccion );
+    // console.log ( asignacion );
+    // console.log ( deduccion );
 
     var neto = asignacion - deduccion;
     var ventana = window.open("", "_blank");

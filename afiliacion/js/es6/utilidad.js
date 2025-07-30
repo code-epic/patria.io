@@ -1,14 +1,14 @@
-let MD5 = function(d){result = M(V(Y(X(d),8*d.length)));return result.toLowerCase()};function M(d){for(var _,m="0123456789ABCDEF",f="",r=0;r<d.length;r++)_=d.charCodeAt(r),f+=m.charAt(_>>>4&15)+m.charAt(15&_);return f}function X(d){for(var _=Array(d.length>>2),m=0;m<_.length;m++)_[m]=0;for(m=0;m<8*d.length;m+=8)_[m>>5]|=(255&d.charCodeAt(m/8))<<m%32;return _}function V(d){for(var _="",m=0;m<32*d.length;m+=8)_+=String.fromCharCode(d[m>>5]>>>m%32&255);return _}function Y(d,_){d[_>>5]|=128<<_%32,d[14+(_+64>>>9<<4)]=_;for(var m=1732584193,f=-271733879,r=-1732584194,i=271733878,n=0;n<d.length;n+=16){var h=m,t=f,g=r,e=i;f=md5_ii(f=md5_ii(f=md5_ii(f=md5_ii(f=md5_hh(f=md5_hh(f=md5_hh(f=md5_hh(f=md5_gg(f=md5_gg(f=md5_gg(f=md5_gg(f=md5_ff(f=md5_ff(f=md5_ff(f=md5_ff(f,r=md5_ff(r,i=md5_ff(i,m=md5_ff(m,f,r,i,d[n+0],7,-680876936),f,r,d[n+1],12,-389564586),m,f,d[n+2],17,606105819),i,m,d[n+3],22,-1044525330),r=md5_ff(r,i=md5_ff(i,m=md5_ff(m,f,r,i,d[n+4],7,-176418897),f,r,d[n+5],12,1200080426),m,f,d[n+6],17,-1473231341),i,m,d[n+7],22,-45705983),r=md5_ff(r,i=md5_ff(i,m=md5_ff(m,f,r,i,d[n+8],7,1770035416),f,r,d[n+9],12,-1958414417),m,f,d[n+10],17,-42063),i,m,d[n+11],22,-1990404162),r=md5_ff(r,i=md5_ff(i,m=md5_ff(m,f,r,i,d[n+12],7,1804603682),f,r,d[n+13],12,-40341101),m,f,d[n+14],17,-1502002290),i,m,d[n+15],22,1236535329),r=md5_gg(r,i=md5_gg(i,m=md5_gg(m,f,r,i,d[n+1],5,-165796510),f,r,d[n+6],9,-1069501632),m,f,d[n+11],14,643717713),i,m,d[n+0],20,-373897302),r=md5_gg(r,i=md5_gg(i,m=md5_gg(m,f,r,i,d[n+5],5,-701558691),f,r,d[n+10],9,38016083),m,f,d[n+15],14,-660478335),i,m,d[n+4],20,-405537848),r=md5_gg(r,i=md5_gg(i,m=md5_gg(m,f,r,i,d[n+9],5,568446438),f,r,d[n+14],9,-1019803690),m,f,d[n+3],14,-187363961),i,m,d[n+8],20,1163531501),r=md5_gg(r,i=md5_gg(i,m=md5_gg(m,f,r,i,d[n+13],5,-1444681467),f,r,d[n+2],9,-51403784),m,f,d[n+7],14,1735328473),i,m,d[n+12],20,-1926607734),r=md5_hh(r,i=md5_hh(i,m=md5_hh(m,f,r,i,d[n+5],4,-378558),f,r,d[n+8],11,-2022574463),m,f,d[n+11],16,1839030562),i,m,d[n+14],23,-35309556),r=md5_hh(r,i=md5_hh(i,m=md5_hh(m,f,r,i,d[n+1],4,-1530992060),f,r,d[n+4],11,1272893353),m,f,d[n+7],16,-155497632),i,m,d[n+10],23,-1094730640),r=md5_hh(r,i=md5_hh(i,m=md5_hh(m,f,r,i,d[n+13],4,681279174),f,r,d[n+0],11,-358537222),m,f,d[n+3],16,-722521979),i,m,d[n+6],23,76029189),r=md5_hh(r,i=md5_hh(i,m=md5_hh(m,f,r,i,d[n+9],4,-640364487),f,r,d[n+12],11,-421815835),m,f,d[n+15],16,530742520),i,m,d[n+2],23,-995338651),r=md5_ii(r,i=md5_ii(i,m=md5_ii(m,f,r,i,d[n+0],6,-198630844),f,r,d[n+7],10,1126891415),m,f,d[n+14],15,-1416354905),i,m,d[n+5],21,-57434055),r=md5_ii(r,i=md5_ii(i,m=md5_ii(m,f,r,i,d[n+12],6,1700485571),f,r,d[n+3],10,-1894986606),m,f,d[n+10],15,-1051523),i,m,d[n+1],21,-2054922799),r=md5_ii(r,i=md5_ii(i,m=md5_ii(m,f,r,i,d[n+8],6,1873313359),f,r,d[n+15],10,-30611744),m,f,d[n+6],15,-1560198380),i,m,d[n+13],21,1309151649),r=md5_ii(r,i=md5_ii(i,m=md5_ii(m,f,r,i,d[n+4],6,-145523070),f,r,d[n+11],10,-1120210379),m,f,d[n+2],15,718787259),i,m,d[n+9],21,-343485551),m=safe_add(m,h),f=safe_add(f,t),r=safe_add(r,g),i=safe_add(i,e)}return Array(m,f,r,i)}function md5_cmn(d,_,m,f,r,i){return safe_add(bit_rol(safe_add(safe_add(_,d),safe_add(f,i)),r),m)}function md5_ff(d,_,m,f,r,i,n){return md5_cmn(_&m|~_&f,d,_,r,i,n)}function md5_gg(d,_,m,f,r,i,n){return md5_cmn(_&f|m&~f,d,_,r,i,n)}function md5_hh(d,_,m,f,r,i,n){return md5_cmn(_^m^f,d,_,r,i,n)}function md5_ii(d,_,m,f,r,i,n){return md5_cmn(m^(_|~f),d,_,r,i,n)}function safe_add(d,_){var m=(65535&d)+(65535&_);return(d>>16)+(_>>16)+(m>>16)<<16|65535&m}function bit_rol(d,_){return d<<_|d>>>32-_}
+let MD5 = function (d) { result = M(V(Y(X(d), 8 * d.length))); return result.toLowerCase() }; function M(d) { for (var _, m = "0123456789ABCDEF", f = "", r = 0; r < d.length; r++)_ = d.charCodeAt(r), f += m.charAt(_ >>> 4 & 15) + m.charAt(15 & _); return f } function X(d) { for (var _ = Array(d.length >> 2), m = 0; m < _.length; m++)_[m] = 0; for (m = 0; m < 8 * d.length; m += 8)_[m >> 5] |= (255 & d.charCodeAt(m / 8)) << m % 32; return _ } function V(d) { for (var _ = "", m = 0; m < 32 * d.length; m += 8)_ += String.fromCharCode(d[m >> 5] >>> m % 32 & 255); return _ } function Y(d, _) { d[_ >> 5] |= 128 << _ % 32, d[14 + (_ + 64 >>> 9 << 4)] = _; for (var m = 1732584193, f = -271733879, r = -1732584194, i = 271733878, n = 0; n < d.length; n += 16) { var h = m, t = f, g = r, e = i; f = md5_ii(f = md5_ii(f = md5_ii(f = md5_ii(f = md5_hh(f = md5_hh(f = md5_hh(f = md5_hh(f = md5_gg(f = md5_gg(f = md5_gg(f = md5_gg(f = md5_ff(f = md5_ff(f = md5_ff(f = md5_ff(f, r = md5_ff(r, i = md5_ff(i, m = md5_ff(m, f, r, i, d[n + 0], 7, -680876936), f, r, d[n + 1], 12, -389564586), m, f, d[n + 2], 17, 606105819), i, m, d[n + 3], 22, -1044525330), r = md5_ff(r, i = md5_ff(i, m = md5_ff(m, f, r, i, d[n + 4], 7, -176418897), f, r, d[n + 5], 12, 1200080426), m, f, d[n + 6], 17, -1473231341), i, m, d[n + 7], 22, -45705983), r = md5_ff(r, i = md5_ff(i, m = md5_ff(m, f, r, i, d[n + 8], 7, 1770035416), f, r, d[n + 9], 12, -1958414417), m, f, d[n + 10], 17, -42063), i, m, d[n + 11], 22, -1990404162), r = md5_ff(r, i = md5_ff(i, m = md5_ff(m, f, r, i, d[n + 12], 7, 1804603682), f, r, d[n + 13], 12, -40341101), m, f, d[n + 14], 17, -1502002290), i, m, d[n + 15], 22, 1236535329), r = md5_gg(r, i = md5_gg(i, m = md5_gg(m, f, r, i, d[n + 1], 5, -165796510), f, r, d[n + 6], 9, -1069501632), m, f, d[n + 11], 14, 643717713), i, m, d[n + 0], 20, -373897302), r = md5_gg(r, i = md5_gg(i, m = md5_gg(m, f, r, i, d[n + 5], 5, -701558691), f, r, d[n + 10], 9, 38016083), m, f, d[n + 15], 14, -660478335), i, m, d[n + 4], 20, -405537848), r = md5_gg(r, i = md5_gg(i, m = md5_gg(m, f, r, i, d[n + 9], 5, 568446438), f, r, d[n + 14], 9, -1019803690), m, f, d[n + 3], 14, -187363961), i, m, d[n + 8], 20, 1163531501), r = md5_gg(r, i = md5_gg(i, m = md5_gg(m, f, r, i, d[n + 13], 5, -1444681467), f, r, d[n + 2], 9, -51403784), m, f, d[n + 7], 14, 1735328473), i, m, d[n + 12], 20, -1926607734), r = md5_hh(r, i = md5_hh(i, m = md5_hh(m, f, r, i, d[n + 5], 4, -378558), f, r, d[n + 8], 11, -2022574463), m, f, d[n + 11], 16, 1839030562), i, m, d[n + 14], 23, -35309556), r = md5_hh(r, i = md5_hh(i, m = md5_hh(m, f, r, i, d[n + 1], 4, -1530992060), f, r, d[n + 4], 11, 1272893353), m, f, d[n + 7], 16, -155497632), i, m, d[n + 10], 23, -1094730640), r = md5_hh(r, i = md5_hh(i, m = md5_hh(m, f, r, i, d[n + 13], 4, 681279174), f, r, d[n + 0], 11, -358537222), m, f, d[n + 3], 16, -722521979), i, m, d[n + 6], 23, 76029189), r = md5_hh(r, i = md5_hh(i, m = md5_hh(m, f, r, i, d[n + 9], 4, -640364487), f, r, d[n + 12], 11, -421815835), m, f, d[n + 15], 16, 530742520), i, m, d[n + 2], 23, -995338651), r = md5_ii(r, i = md5_ii(i, m = md5_ii(m, f, r, i, d[n + 0], 6, -198630844), f, r, d[n + 7], 10, 1126891415), m, f, d[n + 14], 15, -1416354905), i, m, d[n + 5], 21, -57434055), r = md5_ii(r, i = md5_ii(i, m = md5_ii(m, f, r, i, d[n + 12], 6, 1700485571), f, r, d[n + 3], 10, -1894986606), m, f, d[n + 10], 15, -1051523), i, m, d[n + 1], 21, -2054922799), r = md5_ii(r, i = md5_ii(i, m = md5_ii(m, f, r, i, d[n + 8], 6, 1873313359), f, r, d[n + 15], 10, -30611744), m, f, d[n + 6], 15, -1560198380), i, m, d[n + 13], 21, 1309151649), r = md5_ii(r, i = md5_ii(i, m = md5_ii(m, f, r, i, d[n + 4], 6, -145523070), f, r, d[n + 11], 10, -1120210379), m, f, d[n + 2], 15, 718787259), i, m, d[n + 9], 21, -343485551), m = safe_add(m, h), f = safe_add(f, t), r = safe_add(r, g), i = safe_add(i, e) } return Array(m, f, r, i) } function md5_cmn(d, _, m, f, r, i) { return safe_add(bit_rol(safe_add(safe_add(_, d), safe_add(f, i)), r), m) } function md5_ff(d, _, m, f, r, i, n) { return md5_cmn(_ & m | ~_ & f, d, _, r, i, n) } function md5_gg(d, _, m, f, r, i, n) { return md5_cmn(_ & f | m & ~f, d, _, r, i, n) } function md5_hh(d, _, m, f, r, i, n) { return md5_cmn(_ ^ m ^ f, d, _, r, i, n) } function md5_ii(d, _, m, f, r, i, n) { return md5_cmn(m ^ (_ | ~f), d, _, r, i, n) } function safe_add(d, _) { var m = (65535 & d) + (65535 & _); return (d >> 16) + (_ >> 16) + (m >> 16) << 16 | 65535 & m } function bit_rol(d, _) { return d << _ | d >>> 32 - _ }
 
 let MapACrecer = [
-    {"nombre": "TodosVivos", "regla" : ['EA', 'PD' , 'HJ']},
-    {"nombre":"SinEsposa", "regla" : ['PD', 'HJ']},
-    {"nombre":"SinPadres", "regla" : ['EA', 'HJ']},
-    {"nombre":"SinHijos", "regla" : ['EA', 'PD']},
-    {"nombre":"SinPadre", "regla" : ["HJ", "EA"]},
-    {"nombre":"SinPadreEHjos", "regla" : ["EA"]},
-    {"nombre":"SinEsposaEHijos", "regla" : ["PD"]},
-    {"nombre":"SinPadreYEsposa", "regla" : ["HJ"]}
+    { "nombre": "TodosVivos", "regla": ['EA', 'PD', 'HJ'] },
+    { "nombre": "SinEsposa", "regla": ['PD', 'HJ'] },
+    { "nombre": "SinPadres", "regla": ['EA', 'HJ'] },
+    { "nombre": "SinHijos", "regla": ['EA', 'PD'] },
+    { "nombre": "SinPadre", "regla": ["HJ", "EA"] },
+    { "nombre": "SinPadreEHjos", "regla": ["EA"] },
+    { "nombre": "SinEsposaEHijos", "regla": ["PD"] },
+    { "nombre": "SinPadreYEsposa", "regla": ["HJ"] }
 ];
 
 class Utilidad {
@@ -16,7 +16,7 @@ class Utilidad {
 
     }
 
-    Especiales(e,elemento) {
+    Especiales(e, elemento) {
         var key = e.keyCode || e.which;
         var tecla = String.fromCharCode(key).toLowerCase();
         var letras = " áéíóúabcdefghijklmnñopqrstuvwxyz0123456789*";
@@ -31,7 +31,7 @@ class Utilidad {
         }
 
         if (letras.indexOf(tecla) == -1 && !tecla_especial) {
-            $.notify("("+tecla+") Caracter no permitido", "warning");
+            $.notify("(" + tecla + ") Caracter no permitido", "warning");
             return false;
         }
         // var cond1 = 0;var cond2=0;
@@ -58,27 +58,27 @@ class Utilidad {
         //     $("#btnmodclave").attr("disabled",true);
         // }
     }
-    
-    cmbField(obj,foco){
+
+    cmbField(obj, foco) {
         var id = obj.id;
-        if(foco){
-            $("#"+id).attr("type","text");
-            $("#"+id).val("");
-        }else{
-            $("#"+id).attr("type","password");
+        if (foco) {
+            $("#" + id).attr("type", "text");
+            $("#" + id).val("");
+        } else {
+            $("#" + id).attr("type", "password");
         }
 
     }
 
-    SoloNumero(event,elemento) {        
-        var contenidocaja = $("#"+elemento.id).val();
+    SoloNumero(event, elemento) {
+        var contenidocaja = $("#" + elemento.id).val();
         var key = event.keyCode || event.which;
         var tecla = String.fromCharCode(key).toLowerCase();
         var numeros = "0123456789";
         var especiales = [8, 37, 39, 46, 13, 9];
 
-        if(key == 46){
-            if(contenidocaja.indexOf(".") != -1 || contenidocaja == ""){
+        if (key == 46) {
+            if (contenidocaja.indexOf(".") != -1 || contenidocaja == "") {
                 return false;
             }
         }
@@ -129,11 +129,11 @@ class Utilidad {
     //Recibe  Fecha Formato: DD/MM/AAAA
     //Retorna Fecha Formato: AAAA-MM-DD
     ConvertirFechaUnix(f) {
-        if (f == ""){
-          return "0001-01-01T00:00:00Z";
-        }else{
-          f = f.split("/");
-          return f[2] + "-" + f[1] + "-" + f[0];
+        if (f == "") {
+            return "0001-01-01T00:00:00Z";
+        } else {
+            f = f.split("/");
+            return f[2] + "-" + f[1] + "-" + f[0];
         }
     }
 
@@ -145,10 +145,10 @@ class Utilidad {
             var valor = $(this).val();
             var dis = $(this).attr('required');
             var id = $(this).attr('id');
-            
+
             if (dis == "required") {
                 if (valor == "") {
-                   
+
                     respuesta = true;
                     return respuesta;
                 }
@@ -159,7 +159,7 @@ class Utilidad {
     }
 
     //
-    AMCuentaBancaria(cadena){
+    AMCuentaBancaria(cadena) {
         var max = cadena.length;
         var derecha = cadena.substring(0, 4);
         var izquierda = cadena.substring(19);
@@ -167,7 +167,7 @@ class Utilidad {
     }
 
     //
-    MensajeFormulario(_frm,ele) {
+    MensajeFormulario(_frm, ele) {
 
         $("#" + _frm + " :input").each(function (i) {
             var valor = $(this).val();
@@ -236,7 +236,7 @@ class Utilidad {
         return Ano;
     }
 
-    CalcularTServicio(fecha,fecharet, sit) {
+    CalcularTServicio(fecha, fecharet, sit) {
         var FechaActual = new Date(Date.now());
 
         var ISODate = new Date(fecha).toISOString();
@@ -246,13 +246,13 @@ class Utilidad {
         var MesA = parseInt(FechaActual.getMonth()) + 1;
         var DiaA = parseInt(FechaActual.getDate());
 
-        if(sit!= "ACTIVO"){
-             ISODate = new Date(fecharet).toISOString();
-             var fr = ISODate.substr(0, 10);
-             var fret = fr.split("-");
-             AnnoA = parseInt(fret[0]);
-             MesA = parseInt(fret[1]) ;
-             DiaA = parseInt(fret[2]);
+        if (sit != "ACTIVO") {
+            ISODate = new Date(fecharet).toISOString();
+            var fr = ISODate.substr(0, 10);
+            var fret = fr.split("-");
+            AnnoA = parseInt(fret[0]);
+            MesA = parseInt(fret[1]);
+            DiaA = parseInt(fret[2]);
         }
 
         var f = fe.split("-");
@@ -280,24 +280,24 @@ class Utilidad {
     }
 
 
-    ConvertirParentesco(cad,sexo){
+    ConvertirParentesco(cad, sexo) {
         var parent = "";
-        switch(cad) {
+        switch (cad) {
             case "PD":
-                parent =(sexo=="F")?"MADRE":"PADRE";
+                parent = (sexo == "F") ? "MADRE" : "PADRE";
                 break;
             case "HJ":
-                parent = (sexo=="F")?"HIJA":"HIJO";
+                parent = (sexo == "F") ? "HIJA" : "HIJO";
                 break;
             case "EA":
-                parent = (sexo=="F")?"ESPOSA":"ESPOSO";
+                parent = (sexo == "F") ? "ESPOSA" : "ESPOSO";
                 break;
             case "VI":
-              parent = (sexo=="F")?"VIUDA":"VIUDO";
-              break;
+                parent = (sexo == "F") ? "VIUDA" : "VIUDO";
+                break;
             case "HO":
-              parent = (sexo=="F")?"HERMANA":"HERMANO";
-              break;
+                parent = (sexo == "F") ? "HERMANA" : "HERMANO";
+                break;
             default:
                 parent = "";
                 break;
@@ -310,17 +310,17 @@ class Utilidad {
      * @param {date} fechainicio  AAAA/MM/DD
      * @param {date} fechafin AAAA/MM/DD
      */
-    CompararFechasMayorQue(fechainicio, fechafin){
+    CompararFechasMayorQue(fechainicio, fechafin) {
         var f = fechainicio.split("/");
         var f1 = new Date(f[2], f[1], f[0]); //31 de diciembre de 2015
         f = fechafin.split("/");
         var f2 = new Date(f[2], f[1], f[0]); //30 de noviembre de 2014
-        
-        if ( f1 > f2 ){
+
+        if (f1 > f2) {
             console.log("Err Clasic");
             $("#txtmfecharesuelto").val("");
         }
-    
+
     }
 
     //Obtener la direccion mac
@@ -337,8 +337,8 @@ class Utilidad {
     CargarIMG(DIV, URL) {
 
     }
-    
-    ValidarFecha(ID){
+
+    ValidarFecha(ID) {
         $('#' + ID).datepicker({
             autoclose: true,
             format: "dd/mm/yyyy",
@@ -348,84 +348,360 @@ class Utilidad {
         });
     }
 
-    AsignarPorcentajePension(ingreso, tiempo){
-        if(ingreso < 2010){            
+    AsignarPorcentajePension(ingreso, tiempo) {
+        if (ingreso < 2010) {
             return CasoMenor2010(tiempo);
-        }else{
+        } else {
             return ReglaPorcentajeMayor2010(tiempo);
         }
     }
 
-    VerificarDerechoACrecer(familiar){
+    VerificarDerechoACrecer(familiar) {
         var t = $('#tblFamiliares').DataTable();
         t.column(16).visible(true);
         var valor = false;
         var fila = 0;
         familiar.forEach(v => {
-            if ( v.pprestaciones > 0) {
-                valor =  true;
-                t.cell(fila,16).data(v.pprestaciones).draw();
+            if (v.pprestaciones > 0) {
+                valor = true;
+                t.cell(fila, 16).data(v.pprestaciones).draw();
             }
             fila++;
         });
         return valor;
     }
 
-    ValidarDerechoACrecer(familiar){              
+    ValidarDerechoACrecer(familiar) {
         var MAP = [];
         var REGLA = [];
         var FILA = 0;
-        familiar.forEach(v => {            
-            if ( v.beneficio == true ) {
-                var fam = [ v.parentesco, FILA ];            
-                var existe = REGLA.find(function(element) {
+        familiar.forEach(v => {
+            if (v.beneficio == true) {
+                var fam = [v.parentesco, FILA];
+                var existe = REGLA.find(function (element) {
                     return element === v.parentesco;
                 });
                 if (existe == undefined) REGLA.push(v.parentesco);
                 MAP.push(fam);
-           }
-           FILA++;
+            }
+            FILA++;
         });
-        
-        MapACrecer.forEach( x => {
+
+        MapACrecer.forEach(x => {
             var valor = false;
             var repetir = 0;
-            for (var i = 0; i < x.regla.length; i++) {                
-                for(var j = 0; j < REGLA.length; j++){       
-                    if ( x.regla[i] == REGLA[j] ) {
+            for (var i = 0; i < x.regla.length; i++) {
+                for (var j = 0; j < REGLA.length; j++) {
+                    if (x.regla[i] == REGLA[j]) {
                         repetir++;
                         valor = true;
-                     }else{
+                    } else {
                         valor = false;
-                     } 
-                }                
+                    }
+                }
             }
 
-            if (repetir == REGLA.length && repetir == x.regla.length){
-                AplicarReglaAcrecer( MAP, x.nombre);               
-            }            
+            if (repetir == REGLA.length && repetir == x.regla.length) {
+                AplicarReglaAcrecer(MAP, x.nombre);
+            }
         });
-        return MAP;   
+        return MAP;
     }
     //var s = accounting.formatMoney(valor, "Bs# ", 2, ".", ","); //numeral(n).format('0.0,');
 
-    FormatoMoneda( monto ) {
-        var s = numeral( parseFloat(monto,2)).format('0,0.00');
+    FormatoMoneda(monto) {
+        var s = numeral(parseFloat(monto, 2)).format('0,0.00');
         var r1 = s.replace('.', '#');
         var r2 = r1.replace(/,/g, '.');
         var r3 = r2.replace('#', ',');
-        
-        return r3 == 'NaN'?'0,00':r3;
+
+        return r3 == 'NaN' ? '0,00' : r3;
     }
 
-    FormatoNumero( monto ) {        
+    FormatoNumero(monto) {
         var r1 = monto.replace(/\./g, '');
         return parseFloat(r1.replace(/,/g, '.'));
+    }
+
+    /**
+  * Calcula el tiempo de servicio y suma el tiempo reconocido
+  * @param {Date|string} fechaActual - Fecha de referencia
+  * @param {Date|string} fechaIngreso - Fecha de ingreso
+  * @param {Object} tiempoReconocido - Objeto con anios, meses y días reconocidos
+  * @returns {Object} Objeto con tiempo total calculado y tiempo de servicio formateado
+  */
+    calcularTiempoServicioCompleto(fechaActual, fechaIngreso, tiempoReconocido = { anios: 0, meses: 0, dias: 0 }) {
+        // 1. Calcular tiempo de servicio base (sin tiempo reconocido)
+        const tiempoBase = this.calcularTiempoServicio(fechaActual, fechaIngreso);
+
+        // 2. Sumar el tiempo reconocido (siguiendo la lógica de Go)
+        let { anios, meses, dias } = this.sumarTiempoReconocido(tiempoBase, tiempoReconocido);
+
+        // 3. Formatear el resultado como en Go
+        const tiempoServicioFormateado = `${anios}A ${meses}M ${dias}D`;
+
+        return {
+            tiempoTotal: { anios, meses, dias },
+            tiempoBase,
+            tiempoReconocido,
+            tiempoServicioFormateado
+        };
+    }
+
+    /**
+    * Suma el tiempo reconocido al tiempo base (lógica adaptada de Go)
+    */
+    sumarTiempoReconocido(tiempoBase, { anios: ar, meses: mr, dias: dr }) {
+        let { anios, meses, dias } = tiempoBase;
+
+        // Sumar anios reconocidos
+        anios += ar;
+
+        // Sumar meses reconocidos con ajustes
+        if (dr > 29) {
+            dias += dr - 30;
+            meses++;
+        } else {
+            dias += dr;
+        }
+
+        if (mr > 11) {
+            meses += mr - 12;
+            anios++;
+        } else {
+            meses += mr;
+        }
+
+        // Ajustes finales (como en Go)
+        if (ar > 0 || mr > 0 || dr > 0) {
+            if (dias > 29) {
+                dias -= 30;
+                meses++;
+            }
+            if (meses > 11) {
+                meses -= 12;
+                anios++;
+            }
+        }
+
+        return { anios, meses, dias };
+    }
+
+    // Función original mejorada (para usar como base)
+    calcularTiempoServicio(fechaActual, fechaIngreso) {
+        let fechaActualUTC = this.normalizarFechaUTC(fechaActual)
+        let fechaIngresoUTC = this.normalizarFechaUTC(fechaIngreso)
+
+
+        if (isNaN(fechaActualUTC.getTime()) || isNaN(fechaIngresoUTC.getTime())) {
+            throw new Error('Fechas inválidas');
+        }
+
+        if (fechaIngresoUTC > fechaActualUTC) {
+            [fechaActualUTC, fechaIngresoUTC] = [fechaIngresoUTC, fechaActualUTC];
+        }
+
+        let anios = fechaActualUTC.getUTCFullYear() - fechaIngresoUTC.getUTCFullYear();
+        let meses = fechaActualUTC.getUTCMonth() - fechaIngresoUTC.getUTCMonth();
+        let dias = fechaActualUTC.getUTCDate() - fechaIngresoUTC.getUTCDate();
+
+        if (dias < 0) {
+            const ultimoDiaMesAnterior = new Date(Date.UTC(
+                fechaActualUTC.getUTCFullYear(),
+                fechaActualUTC.getUTCMonth(),
+                0
+            )).getUTCDate();
+
+            dias = ultimoDiaMesAnterior - fechaIngresoUTC.getUTCDate() + fechaActualUTC.getUTCDate();
+            meses--;
+        }
+
+        if (meses < 0) {
+            meses += 12;
+            anios--;
+        }
+
+        return { anios, meses, dias };
+    }
+
+
+
+    normalizarFechaUTC(fecha) {
+        if (!fecha) return new Date(NaN);
+
+        // Si es string con offset de zona horaria
+        if (typeof fecha === 'string' && /[-+]\d{2}:\d{2}$/.test(fecha)) {
+            // Convertir a UTC eliminando el offset
+            const dateObj = new Date(fecha);
+            const utcDate = new Date(dateObj.getTime() + (dateObj.getTimezoneOffset() * 60000));
+            return utcDate;
+        }
+
+        // Si ya es Date o string ISO sin zona horaria
+        return new Date(fecha);
+    }
+
+    /**
+     * @returns {string} Fecha y hora formateada
+     */
+    getFechaHora() {
+        const fecha = new Date();
+        const dia = String(fecha.getDate()).padStart(2, '0');
+        const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Los meses empiezan en 0
+        const anio = fecha.getFullYear();
+
+        let horas = fecha.getHours();
+        const minutos = String(fecha.getMinutes()).padStart(2, '0');
+        const ampm = horas >= 12 ? 'PM' : 'AM';
+
+        horas = horas % 12;
+        horas = horas ? horas : 12; // La hora 0 se convierte en 12
+
+        return `${dia}/${mes}/${anio} ${horas}:${minutos} ${ampm}`;
+    }
+
+    /**
+     * @returns {string} Fecha y hora formateada
+     */
+    getFecha() {
+        const fecha = new Date();
+        const dia = String(fecha.getDate()).padStart(2, '0');
+        const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Los meses empiezan en 0
+        const anio = fecha.getFullYear();
+
+        return `${dia}/${mes}/${anio}`;
+    }
+
+    /**
+    * @returns {string} Fecha actual en formato ISO (YYYY-MM-DD)
+    */
+    getFechaISO() {
+        const fecha = new Date();
+        const anio = fecha.getFullYear();
+        const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+        const dia = String(fecha.getDate()).padStart(2, '0');
+        return `${anio}-${mes}-${dia}`;
+    }
+
+    /**
+     * Calcula el tiempo de servicio y suma el tiempo reconocido
+     * @param {Date|string} fechaActual - Fecha de referencia
+     * @param {Date|string} fechaIngreso - Fecha de ingreso
+     * @param {Object} tiempoReconocido - Objeto con anios, meses y días reconocidos
+     * @returns {Object} Objeto con tiempo total calculado y tiempo de servicio formateado
+     */
+    CalcularTiempoServicioCompleto(fechaActual, fechaIngreso, tiempoReconocido = { anios: 0, meses: 0, dias: 0 }) {
+        // 1. Calcular tiempo de servicio base (sin tiempo reconocido)
+        const tiempoBase = this.calcularTiempoServicio(fechaActual, fechaIngreso);
+
+        // 2. Sumar el tiempo reconocido (siguiendo la lógica de Go)
+        let { anios, meses, dias } = this.sumarTiempoReconocido(tiempoBase, tiempoReconocido);
+
+        // 3. Formatear el resultado como en Go
+        const tiempoServicioFormateado = `${anios}A ${meses}M ${dias}D`;
+
+        return {
+            tiempoTotal: { anios, meses, dias },
+            tiempoBase,
+            tiempoReconocido,
+            tiempoServicioFormateado
+        };
+    }
+
+    /**
+    * Suma el tiempo reconocido al tiempo base (lógica adaptada de Go)
+    */
+    sumarTiempoReconocido(tiempoBase, { anios: ar, meses: mr, dias: dr }) {
+        let { anios, meses, dias } = tiempoBase;
+
+        // Sumar anios reconocidos
+        anios += ar;
+
+        // Sumar meses reconocidos con ajustes
+        if (dr > 29) {
+            dias += dr - 30;
+            meses++;
+        } else {
+            dias += dr;
+        }
+
+        if (mr > 11) {
+            meses += mr - 12;
+            anios++;
+        } else {
+            meses += mr;
+        }
+
+        // Ajustes finales (como en Go)
+        if (ar > 0 || mr > 0 || dr > 0) {
+            if (dias > 29) {
+                dias -= 30;
+                meses++;
+            }
+            if (meses > 11) {
+                meses -= 12;
+                anios++;
+            }
+        }
+
+        return { anios, meses, dias };
+    }
+
+    // Función original mejorada (para usar como base)
+    calcularTiempoServicio(fechaActual, fechaIngreso) {
+        let fechaActualUTC = this.normalizarFechaUTC(fechaActual)
+        let fechaIngresoUTC = this.normalizarFechaUTC(fechaIngreso)
+
+
+        if (isNaN(fechaActualUTC.getTime()) || isNaN(fechaIngresoUTC.getTime())) {
+            throw new Error('Fechas inválidas');
+        }
+
+        if (fechaIngresoUTC > fechaActualUTC) {
+            [fechaActualUTC, fechaIngresoUTC] = [fechaIngresoUTC, fechaActualUTC];
+        }
+
+        let anios = fechaActualUTC.getUTCFullYear() - fechaIngresoUTC.getUTCFullYear();
+        let meses = fechaActualUTC.getUTCMonth() - fechaIngresoUTC.getUTCMonth();
+        let dias = fechaActualUTC.getUTCDate() - fechaIngresoUTC.getUTCDate();
+
+        if (dias < 0) {
+            const ultimoDiaMesAnterior = new Date(Date.UTC(
+                fechaActualUTC.getUTCFullYear(),
+                fechaActualUTC.getUTCMonth(),
+                0
+            )).getUTCDate();
+
+            dias = ultimoDiaMesAnterior - fechaIngresoUTC.getUTCDate() + fechaActualUTC.getUTCDate();
+            meses--;
+        }
+
+        if (meses < 0) {
+            meses += 12;
+            anios--;
+        }
+
+        return { anios, meses, dias };
+    }
+
+    normalizarFechaUTC(fecha) {
+        if (!fecha) return new Date(NaN);
+
+        // Si es string con offset de zona horaria
+        if (typeof fecha === 'string' && /[-+]\d{2}:\d{2}$/.test(fecha)) {
+            // Convertir a UTC eliminando el offset
+            const dateObj = new Date(fecha);
+            const utcDate = new Date(dateObj.getTime() + (dateObj.getTimezoneOffset() * 60000));
+            return utcDate;
+        }
+
+        // Si ya es Date o string ISO sin zona horaria
+        return new Date(fecha);
     }
 }
 
 
-function AplicarReglaAcrecer(MAP, regla){
+function AplicarReglaAcrecer(MAP, regla) {
     var t = $('#tblFamiliares').DataTable();
     t.column(16).visible(true);
     $("#divPensionSobreviviente").html(`<div class="callout callout-success" style="padding:8.3px; margin:0px;">
@@ -434,137 +710,137 @@ function AplicarReglaAcrecer(MAP, regla){
     switch (regla) {
         case "TodosVivos":
             //ESPOSA 60%            
-            for(var i=0; i < MAP.length; i++){
-                if ( MAP[i][0] == "EA" ){
+            for (var i = 0; i < MAP.length; i++) {
+                if (MAP[i][0] == "EA") {
                     var fila = MAP[i][1];
-                    t.cell(fila,16).data(60.00).draw();
+                    t.cell(fila, 16).data(60.00).draw();
                 }
-            }       
+            }
             //HIJOS 20%
             var porcentaje = 20 / ContarParentesco(MAP, "HJ");
-            for(var i=0; i < MAP.length; i++){
-                if ( MAP[i][0] == "HJ" ){
+            for (var i = 0; i < MAP.length; i++) {
+                if (MAP[i][0] == "HJ") {
                     var fila = MAP[i][1];
-                    t.cell(fila,16).data(porcentaje.toFixed(2)).draw();
+                    t.cell(fila, 16).data(porcentaje.toFixed(2)).draw();
                 }
-            }         
+            }
             //PADRE 20%
             var porc = 20 / ContarParentesco(MAP, "PD");
-            for(var i=0; i < MAP.length; i++){
-                if ( MAP[i][0] == "PD" ){
+            for (var i = 0; i < MAP.length; i++) {
+                if (MAP[i][0] == "PD") {
                     var fila = MAP[i][1];
-                    t.cell(fila,16).data(porc.toFixed(2)).draw();
+                    t.cell(fila, 16).data(porc.toFixed(2)).draw();
                 }
-            }         
+            }
             break;
         case "SinEsposa":
             //PADRES E HIJOS
-             //HIJOS 75%
-             var porcentaje = 75 / ContarParentesco(MAP, "HJ");
-             for(var i=0; i < MAP.length; i++){
-                 if ( MAP[i][0] == "HJ" ){
-                     var fila = MAP[i][1];
-                     t.cell(fila,16).data(porcentaje.toFixed(2)).draw();
-                 }
-             }         
-             //PADRE 25%
-             var porc = 25 / ContarParentesco(MAP, "PD");
-             
-             for(var i=0; i < MAP.length; i++){
-                 if ( MAP[i][0] == "PD" ){
-                     var fila = MAP[i][1];
-                     t.cell(fila,16).data(porc.toFixed(2)).draw();
-                 }
-             }         
+            //HIJOS 75%
+            var porcentaje = 75 / ContarParentesco(MAP, "HJ");
+            for (var i = 0; i < MAP.length; i++) {
+                if (MAP[i][0] == "HJ") {
+                    var fila = MAP[i][1];
+                    t.cell(fila, 16).data(porcentaje.toFixed(2)).draw();
+                }
+            }
+            //PADRE 25%
+            var porc = 25 / ContarParentesco(MAP, "PD");
+
+            for (var i = 0; i < MAP.length; i++) {
+                if (MAP[i][0] == "PD") {
+                    var fila = MAP[i][1];
+                    t.cell(fila, 16).data(porc.toFixed(2)).draw();
+                }
+            }
             break;
         case "SinHijos":
             //ESPOSA Y PADRES
             //ESPOSA 50%            
-            for(var i=0; i < MAP.length; i++){
-                if ( MAP[i][0] == "EA" ){
+            for (var i = 0; i < MAP.length; i++) {
+                if (MAP[i][0] == "EA") {
                     var fila = MAP[i][1];
-                    t.cell(fila,16).data(50.00).draw();
+                    t.cell(fila, 16).data(50.00).draw();
                 }
-            }       
-             //PADRE 50%
-             var porc = 50 / ContarParentesco(MAP, "PD");
-             console.log(porc);
-             for(var i=0; i < MAP.length; i++){
-                 if ( MAP[i][0] == "PD" ){
-                     var fila = MAP[i][1];
-                     t.cell(fila,16).data(porc.toFixed(2)).draw();
-                 }
-             }         
+            }
+            //PADRE 50%
+            var porc = 50 / ContarParentesco(MAP, "PD");
+            console.log(porc);
+            for (var i = 0; i < MAP.length; i++) {
+                if (MAP[i][0] == "PD") {
+                    var fila = MAP[i][1];
+                    t.cell(fila, 16).data(porc.toFixed(2)).draw();
+                }
+            }
             break;
         case "SinPadres":
-             //ESPOSA Y PADRES
+            //ESPOSA Y PADRES
             //ESPOSA 60%            
-            for(var i=0; i < MAP.length; i++){
-                if ( MAP[i][0] == "EA" ){
+            for (var i = 0; i < MAP.length; i++) {
+                if (MAP[i][0] == "EA") {
                     var fila = MAP[i][1];
-                    t.cell(fila,16).data(60.00).draw();
+                    t.cell(fila, 16).data(60.00).draw();
                 }
             }
             //HIJOS 40%
             var porcentaje = 40 / ContarParentesco(MAP, "HJ");
-            for(var i=0; i < MAP.length; i++){
-                if ( MAP[i][0] == "HJ" ){
+            for (var i = 0; i < MAP.length; i++) {
+                if (MAP[i][0] == "HJ") {
                     var fila = MAP[i][1];
-                    t.cell(fila,16).data(porcentaje.toFixed(2)).draw();
+                    t.cell(fila, 16).data(porcentaje.toFixed(2)).draw();
                 }
             }
-             
+
         case "SinPadre":
-             //ESPOSA E HIJO
+            //ESPOSA E HIJO
             //ESPOSA 60%            
-            for(var i=0; i < MAP.length; i++){
-                if ( MAP[i][0] == "EA" ){
+            for (var i = 0; i < MAP.length; i++) {
+                if (MAP[i][0] == "EA") {
                     var fila = MAP[i][1];
-                    t.cell(fila,16).data(60.00).draw();
+                    t.cell(fila, 16).data(60.00).draw();
                 }
-            }       
-             //HIJOS 20%
-             var porc = 20 / ContarParentesco(MAP, "HJ");
-             for(var i=0; i < MAP.length; i++){
-                 if ( MAP[i][0] == "HJ" ){
-                     var fila = MAP[i][1];
-                     t.cell(fila,16).data(porc.toFixed(2)).draw();
-                 }
-             }
-             $("#divPensionSobreviviente").html(`<div class="callout callout-danger" style="padding:8.3px; margin:0px;">
+            }
+            //HIJOS 20%
+            var porc = 20 / ContarParentesco(MAP, "HJ");
+            for (var i = 0; i < MAP.length; i++) {
+                if (MAP[i][0] == "HJ") {
+                    var fila = MAP[i][1];
+                    t.cell(fila, 16).data(porc.toFixed(2)).draw();
+                }
+            }
+            $("#divPensionSobreviviente").html(`<div class="callout callout-danger" style="padding:8.3px; margin:0px;">
                     <p style="text-align: left"><b>Pensión del grupo familiar 80%</b></p>
-                </div>`); 
+                </div>`);
             break;
         case "SinPadreEHjos":
             //SOLO ESPOSA
-            t.cell( MAP[0][1],16).data(100.00).draw();
+            t.cell(MAP[0][1], 16).data(100.00).draw();
             break;
         case "SinEsposaEHijos":
             //SOLO PADRES
-            var porcentaje = 100 / MAP.length;            
-            for(var i=0; i < MAP.length; i++){
+            var porcentaje = 100 / MAP.length;
+            for (var i = 0; i < MAP.length; i++) {
                 var fila = MAP[i][1];
-                t.cell(fila,16).data(porcentaje.toFixed(2)).draw();
-            }            
+                t.cell(fila, 16).data(porcentaje.toFixed(2)).draw();
+            }
             break;
         case "SinPadreYEsposa":
             //SOLO HIJOS
-            var porcentaje = 100 / MAP.length;            
-            for(var i=0; i < MAP.length; i++){
+            var porcentaje = 100 / MAP.length;
+            for (var i = 0; i < MAP.length; i++) {
                 var fila = MAP[i][1];
-                t.cell(fila,16).data(porcentaje.toFixed(2)).draw();
-            }  
+                t.cell(fila, 16).data(porcentaje.toFixed(2)).draw();
+            }
             break;
         default:
             break;
     }
-    
+
 }
 
-function ContarParentesco(MAP, parentesco){
+function ContarParentesco(MAP, parentesco) {
     var contar = 0;
-    for(var i=0; i< MAP.length; i++){
-        if ( MAP[i][0] == parentesco ) {
+    for (var i = 0; i < MAP.length; i++) {
+        if (MAP[i][0] == parentesco) {
             contar++;
         }
     }
@@ -572,7 +848,7 @@ function ContarParentesco(MAP, parentesco){
 }
 
 
-function CasoMenor2010(t){
+function CasoMenor2010(t) {
     var v = 0;
     switch (t) {
         case 15:
@@ -607,28 +883,28 @@ function CasoMenor2010(t){
             break;
         case 25:
             v = 99;
-            break; 
+            break;
         case 26:
             v = 99;
-            break; 
+            break;
         case 27:
             v = 99;
-            break; 
+            break;
         case 28:
             v = 99;
-            break; 
+            break;
         case 29:
             v = 99;
-            break;        
+            break;
         default:
             if (t >= 30) v = 100;
     }
     return v;
 }
 
-function ReglaPorcentajeMayor2010(tiempo){
+function ReglaPorcentajeMayor2010(tiempo) {
     var v = 0;
-    
+
     switch (tiempo) {
         case 15:
             v = 50;
@@ -679,8 +955,8 @@ function ReglaPorcentajeMayor2010(tiempo){
             v = 100;
             break;
         default:
-            if (tiempo >30) v = 100;
-            
+            if (tiempo > 30) v = 100;
+
             break;
     }
     return v;
@@ -689,154 +965,8 @@ function ReglaPorcentajeMayor2010(tiempo){
 
 
 
-  /**
-   * Calcula el tiempo de servicio y suma el tiempo reconocido
-   * @param {Date|string} fechaActual - Fecha de referencia
-   * @param {Date|string} fechaIngreso - Fecha de ingreso
-   * @param {Object} tiempoReconocido - Objeto con anios, meses y días reconocidos
-   * @returns {Object} Objeto con tiempo total calculado y tiempo de servicio formateado
-   */
-  function calcularTiempoServicioCompleto(fechaActual, fechaIngreso, tiempoReconocido = { anios: 0, meses: 0, dias: 0 }) {
-    // 1. Calcular tiempo de servicio base (sin tiempo reconocido)
-    const tiempoBase = this.calcularTiempoServicio(fechaActual, fechaIngreso);
-
-    // 2. Sumar el tiempo reconocido (siguiendo la lógica de Go)
-    let { anios, meses, dias } = this.sumarTiempoReconocido(tiempoBase, tiempoReconocido);
-
-    // 3. Formatear el resultado como en Go
-    const tiempoServicioFormateado = `${anios}A ${meses}M ${dias}D`;
-
-    return {
-      tiempoTotal: { anios, meses, dias },
-      tiempoBase,
-      tiempoReconocido,
-      tiempoServicioFormateado
-    };
-  }
-
-  /**
-  * Suma el tiempo reconocido al tiempo base (lógica adaptada de Go)
-  */
-  function sumarTiempoReconocido(tiempoBase, { anios: ar, meses: mr, dias: dr }) {
-    let { anios, meses, dias } = tiempoBase;
-
-    // Sumar anios reconocidos
-    anios += ar;
-
-    // Sumar meses reconocidos con ajustes
-    if (dr > 29) {
-      dias += dr - 30;
-      meses++;
-    } else {
-      dias += dr;
-    }
-
-    if (mr > 11) {
-      meses += mr - 12;
-      anios++;
-    } else {
-      meses += mr;
-    }
-
-    // Ajustes finales (como en Go)
-    if (ar > 0 || mr > 0 || dr > 0) {
-      if (dias > 29) {
-        dias -= 30;
-        meses++;
-      }
-      if (meses > 11) {
-        meses -= 12;
-        anios++;
-      }
-    }
-
-    return { anios, meses, dias };
-  }
-
-  // Función original mejorada (para usar como base)
-  function calcularTiempoServicio(fechaActual, fechaIngreso) {
-    let fechaActualUTC = this.normalizarFechaUTC(fechaActual)
-    let fechaIngresoUTC = this.normalizarFechaUTC(fechaIngreso)
 
 
-    if (isNaN(fechaActualUTC.getTime()) || isNaN(fechaIngresoUTC.getTime())) {
-      throw new Error('Fechas inválidas');
-    }
-
-    if (fechaIngresoUTC > fechaActualUTC) {
-      [fechaActualUTC, fechaIngresoUTC] = [fechaIngresoUTC, fechaActualUTC];
-    }
-
-    let anios = fechaActualUTC.getUTCFullYear() - fechaIngresoUTC.getUTCFullYear();
-    let meses = fechaActualUTC.getUTCMonth() - fechaIngresoUTC.getUTCMonth();
-    let dias = fechaActualUTC.getUTCDate() - fechaIngresoUTC.getUTCDate();
-
-    if (dias < 0) {
-      const ultimoDiaMesAnterior = new Date(Date.UTC(
-        fechaActualUTC.getUTCFullYear(),
-        fechaActualUTC.getUTCMonth(),
-        0
-      )).getUTCDate();
-
-      dias = ultimoDiaMesAnterior - fechaIngresoUTC.getUTCDate() + fechaActualUTC.getUTCDate();
-      meses--;
-    }
-
-    if (meses < 0) {
-      meses += 12;
-      anios--;
-    }
-
-    return { anios, meses, dias };
-  }
-
-
-
-  function normalizarFechaUTC(fecha ) {
-    if (!fecha) return new Date(NaN);
-
-    // Si es string con offset de zona horaria
-    if (typeof fecha === 'string' && /[-+]\d{2}:\d{2}$/.test(fecha)) {
-      // Convertir a UTC eliminando el offset
-      const dateObj = new Date(fecha);
-      const utcDate = new Date(dateObj.getTime() + (dateObj.getTimezoneOffset() * 60000));
-      return utcDate;
-    }
-
-    // Si ya es Date o string ISO sin zona horaria
-    return new Date(fecha);
-  }
-
-  /**
-   * @returns {string} Fecha y hora formateada
-   */
-  function getFechaHora() {
-    const fecha = new Date();
-    const dia = String(fecha.getDate()).padStart(2, '0');
-    const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Los meses empiezan en 0
-    const anio = fecha.getFullYear();
-
-    let horas = fecha.getHours();
-    const minutos = String(fecha.getMinutes()).padStart(2, '0');
-    const ampm = horas >= 12 ? 'PM' : 'AM';
-
-    horas = horas % 12;
-    horas = horas ? horas : 12; // La hora 0 se convierte en 12
-
-    return `${dia}/${mes}/${anio} ${horas}:${minutos} ${ampm}`;
-  }
-
-  /**
-   * @returns {string} Fecha y hora formateada
-   */
-  function getFecha() {
-    const fecha = new Date();
-    const dia = String(fecha.getDate()).padStart(2, '0');
-    const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Los meses empiezan en 0
-    const anio = fecha.getFullYear();
-
-    return `${dia}/${mes}/${anio}`;
-  }
 
 
 

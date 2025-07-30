@@ -714,6 +714,38 @@ class Credito {
 
 }
 
+class NewMilitar {
+	constructor() {
+		this.codigo = "";
+		this.descripcion = "";
+		this.abreviatura = "";
+		this.categoria = "";
+		this.clasificacion = "";
+
+	}
+	Crear(data) {
+		console.log(data)
+		$("#cmbgrado").html('');
+		const grado = data.Cuerpo[0];
+		this.codigo = grado.codigo;
+		this.abreviatura = grado.grado_abreviatura;
+		this.descripcion = grado.grado_nombre;
+		this.categoria = grado.categoria;
+		this.clasificacion = grado.clasificacion;
+
+		ObjMilitar.grado.abreviatura = this.abreviatura;
+
+		var url = "images/grados/" + this.abreviatura + ".png";
+		url = url.toLowerCase();
+		$("#_imggrado").attr("src", url);
+		$("#_Constgrado").attr("src", url); //Grado de la constancia de afiliac
+
+		$("#cmbgrado").html('<option value="' + this.abreviatura + '">' + this.descripcion + '</option>');
+		
+		
+	}
+}
+
 class Militar {
 	constructor() {
 		this.id = "";
@@ -797,10 +829,10 @@ class Militar {
 			$("#_divfechadefuncion").show();
 			$("#txtnropersona").val(DB.nropersona);
 			$("#txtcedula").val(DB.cedula);
-			url = "images/grados/" + militar.grado.abreviatura + ".png";
-			url = url.toLowerCase();
-			$("#_imggrado").attr("src", url);
-			$("#_Constgrado").attr("src", url); //Grado de la constancia de afiliacion
+			// url = "images/grados/" + militar.grado.abreviatura + ".png";
+			// url = url.toLowerCase();
+			// $("#_imggrado").attr("src", url);
+			// $("#_Constgrado").attr("src", url); //Grado de la constancia de afiliacion
 
 			var rutaimg = Conn.URLIMG;
 			url = rutaimg + $("#txtcedula").val() + ".jpg";
@@ -870,16 +902,21 @@ class Militar {
 				$("#_situacion").attr("style", "font-size:12px");
 			}
 
-			if (militar.cis.investigacion.fedevida != undefined) {
-				var ffevida = "";
-				militar.cis.investigacion.fedevida.forEach(v => { ffevida = v.fechacreacion; });
-				if (ffevida != "") {
-					$("#_lblfevida").html(Util.ConvertirFechaHumana(ffevida));
-				}
+			if (militar.cis != undefined ) {
+				if (militar.cis.investigacion.fedevida != undefined) {
+					var ffevida = "";
+					militar.cis.investigacion.fedevida.forEach(v => { ffevida = v.fechacreacion; });
+					if (ffevida != "") {
+						$("#_lblfevida").html(Util.ConvertirFechaHumana(ffevida));
+					}
 
+				}
 			}
+			var reco = {anios: militar.areconocido, meses: militar.mreconocido, dias: militar.dreconocido }
+			var tiempo = Util.calcularTiempoServicioCompleto(militar.fingreso, militar.fascenso, reco)
+			console.log(tiempo)
 			$("#_clasificacion").html('<font style="size:8px">' + $("#cmbclase option:selected").text() + "</font>");
-			$("#_tiemposervicio").html(militar.tiemposervicio);
+			$("#_tiemposervicio").html(tiempo.tiempoServicioFormateado);
 			if ($("#txtmfecharesuelto").val() != "") {
 				$("#cmbcategoria").val(militar.categoria);
 				$("#cmbclase").val(militar.clase);
@@ -926,7 +963,7 @@ class Militar {
 
 
 			}
-			if (militar.persona.direccion != undefined) {
+			if (militar.persona.direccion != undefined && militar.persona.direccion.length > 0 ) {
 
 				var DIR = militar.persona.direccion[0];
 				Estados.ObtenerEstados();
@@ -970,24 +1007,30 @@ class Militar {
 			$("#txtcodigocomponente").val(militar.codigocomponente);
 			$("#_codigocomponente").html(militar.codigocomponente);
 
-			$("#_lblfechacarnet").html(Util.ConvertirFechaHumana(militar.tim.fechavencimiento));
-			$("#_lblcreacioncarnet").html(Util.ConvertirFechaHumana(militar.tim.fechacreacion));
-
+			if (militar.tim != undefined ){
+				$("#_lblfechacarnet").html(Util.ConvertirFechaHumana(militar.tim.fechavencimiento));
+				$("#_lblcreacioncarnet").html(Util.ConvertirFechaHumana(militar.tim.fechacreacion));
+			}
+			
 			$("#txtnumhistoriaclinica").val(militar.numerohistoria);
 			$("#_divpension").hide();
 			$("#lblFechaResolucion").html("Fecha de Resolución");
 			$("#_btnCCSolvencia").hide();
 			$("#_btnCARC").hide();
-			if (militar.pension.grado != undefined && militar.pension.grado != "" && militar.situacion != "ACT") {
-				$("#lblFechaResolucion").html("Fecha de Retiro");
-				$("#_divpension").show();
-				$("#txtmfecharesuelto").val(Util.ConvertirFechaHumana(militar.fretiro));
-				$("#txtporcentaje").val(militar.pension.pprestaciones);
-				$("#cmbtipopension").val(militar.pension.causal);
-				$("#_btnCCSolvencia").show();
-				$("#_btnCARC").show();
-			}
 
+			if (militar.pension != undefined) {
+				if (militar.pension.grado != undefined && militar.pension.grado != "" && militar.situacion != "ACT") {
+					$("#lblFechaResolucion").html("Fecha de Retiro");
+					$("#_divpension").show();
+					$("#txtmfecharesuelto").val(Util.ConvertirFechaHumana(militar.fretiro));
+					$("#txtporcentaje").val(militar.pension.pprestaciones);
+					$("#cmbtipopension").val(militar.pension.causal);
+					$("#_btnCCSolvencia").show();
+					$("#_btnCARC").show();
+				}
+
+			}
+			
 
 
 			CargarFamiliaresModal(militar, t);
@@ -1029,14 +1072,17 @@ class Militar {
 
 			var ipagado = 0;
 			var credito = false;
-			if (militar.credito.prestamo.personal != undefined) {
-				if (militar.credito.prestamo.personal.length > 0) {
-					militar.credito.prestamo.personal.forEach(v => {
-						credito = true;
-						if (v.pagado != undefined) ipagado = ipagado + 1;
-					});
+			if (militar.credito != undefined) {
+				if (militar.credito.prestamo.personal != undefined) {
+					if (militar.credito.prestamo.personal.length > 0) {
+						militar.credito.prestamo.personal.forEach(v => {
+							credito = true;
+							if (v.pagado != undefined) ipagado = ipagado + 1;
+						});
+					}
 				}
 			}
+			
 			
 			//console.log(ipagado, credito, $("#cmbCondicion").val("3"))
 			if (ipagado == 0 && credito == true){
@@ -1057,29 +1103,45 @@ class Militar {
 			$("#_search").show();
 			$("#_cargando").hide();
 
+
+			if(militar.pension != undefined ){
+				$("#_tblDescuentos").html(DescuentosHTML());
+				$("#_tblMedidaJudicial").html(MedidaJudicialHTML());
+				var tMJ = $('#tblMedidaJudicial').DataTable(tablaBasica);
+				tMJ.clear().draw();
+				MostrarMedidaJudicial(militar.pension.medidajudicial, tMJ);
+
+
+
+
+				var DPen = $('#tblDescuentos').DataTable(tablaBasica);
+				DPen.clear().draw();
+				MostrarDescuentos(militar.pension.descuentos, DPen);
+
+				$("#_tblCredito").html(ListaCreditoHTML());
+				var tCre = $('#tblCredito').DataTable(tablaBasica);
+				tCre.clear().draw();
+				MostrarCredito(militar.credito, tCre);
+				verificarPrivilegioUsuario();
+			}
 			ActivarPension();
 			// if (militar.pension.pprestaciones != undefined) {
 			// 	$("#txtporcentaje").val(militar.pension.pprestaciones);
 			// 	$("#cmbtipopension").val(militar.pension.causal);
 			// }
-			$("#_tblDescuentos").html(DescuentosHTML());
-			$("#_tblMedidaJudicial").html(MedidaJudicialHTML());
-			var tMJ = $('#tblMedidaJudicial').DataTable(tablaBasica);
-			tMJ.clear().draw();
-			MostrarMedidaJudicial(militar.pension.medidajudicial, tMJ);
 
 
+			
 
+			
+			var xAPI = {
+			'funcion': 'EJB_CGradoPorNomina',
+			'parametros': militar.id, //cedula
+			'valores': ''
+			}
 
-			var DPen = $('#tblDescuentos').DataTable(tablaBasica);
-			DPen.clear().draw();
-			MostrarDescuentos(militar.pension.descuentos, DPen);
-
-			$("#_tblCredito").html(ListaCreditoHTML());
-			var tCre = $('#tblCredito').DataTable(tablaBasica);
-			tCre.clear().draw();
-			MostrarCredito(militar.credito, tCre);
-			verificarPrivilegioUsuario();
+			var url = Conn.URL  + Conn.IDHash;
+			CargarAPI(url, "POST", xAPI, NewObjMilitar);
 		}
 
 	}
