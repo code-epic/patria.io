@@ -41,12 +41,13 @@ p {
 function CConstanciaAfiliacion() {
     var Util = new Utilidad();
     var urlMil = Conn.URLIMG + $("#txtcedula").val() + ".jpg";
-    if (ObjMilitar.Persona.foto  != undefined){
+    console.log(ObjMilitar)
+    if (ObjMilitar.persona.foto  != undefined){
         var url = Conn.URLTEMP;
         urlMil = url + $("#txtcedula").val() + "/foto.jpg";
     }
 
-    var urlGra = "images/grados/" + ObjMilitar.Grado.abreviatura + ".png";
+    var urlGra = "images/grados/" + ObjMilitar.grado.abreviatura + ".png";
     urlGra = urlGra.toLowerCase();
     var fechaActual = ConvertirFechaActual();
     var tiempo = ObjMilitar.tiemposervicio;

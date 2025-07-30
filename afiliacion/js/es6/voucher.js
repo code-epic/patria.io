@@ -236,7 +236,7 @@ class WObtenerConceptos{
 
 function ObtenerConceptosW(){ 
     var Obj = new WObtenerConceptos();
-    var url = Conn.URL + "sendrequestget/listarconceptos";    
+    var url = Conn.URL + "sendrequestget/listarconceptos"; 
     CargarAPI(url, "GET", "", Obj);    
 }
 
