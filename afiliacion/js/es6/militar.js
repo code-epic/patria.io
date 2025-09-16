@@ -999,18 +999,12 @@ class Militar {
 			$("#txtcodigocomponente").val(militar.codigocomponente);
 			$("#_codigocomponente").html(militar.codigocomponente);
 
-<<<<<<< HEAD
 			if (militar.tim != undefined ){
 				$("#_lblfechacarnet").html(Util.ConvertirFechaHumana(militar.tim.fechavencimiento));
 				$("#_lblcreacioncarnet").html(Util.ConvertirFechaHumana(militar.tim.fechacreacion));
 			}
 			
 			$("#txtnumhistoriaclinica").val(militar.numerohistoria);
-=======
-			$("#_lblfechacarnet").html(Util.ConvertirFechaHumana(militar.tim.fechavencimiento));
-			$("#_lblcreacioncarnet").html(Util.ConvertirFechaHumana(militar.tim.fechacreacion));
-
->>>>>>> cb380fdf8fb20fca926bdf48cc3434915803cc73
 			$("#_divpension").hide();
 			$("#lblFechaResolucion").html("Fecha de Resolución");
 			$("#_btnCCSolvencia").hide();
