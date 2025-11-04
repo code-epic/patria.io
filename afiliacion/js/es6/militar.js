@@ -784,7 +784,7 @@ class Militar {
 		const fecha = new Date(militar.fingreso)
 		const hoy = new Date()
 
-		const aux = calcularTiempoServicioCompleto(hoy, fecha)
+		const aux = Util.calcularTiempoServicio(hoy, fecha)
 		let tiemposervicio = aux.tiempoServicioFormateado
 		militar.tiemposervicio = tiemposervicio;
 
